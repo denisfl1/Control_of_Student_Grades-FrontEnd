@@ -2,6 +2,8 @@
 
 "use client"
 
+import background from "@/imgs/classroom.jpg"
+
 export default function login(){
 
     function handleLogin(){
@@ -15,12 +17,14 @@ export default function login(){
 
 
     return(
+        <>
 
-        <div className="loginContent flex relative  m-auto  bg-blue-300 bg-opacity-50 " >
+    <img className="loginIMG" src={background.src}></img>
+        <div className="loginContent flex relative  m-auto  bg-gray-300 bg-opacity-80 " >
 
             <form className="flex flex-col m-auto">
 
-                <input placeholder="E-mail" type="email" name="email"></input>
+                <input placeholder="Digite seu (RA)" type="email" name="email"></input>
 
 
                 <input placeholder="Senha" type="text" name="text"></input>
@@ -34,7 +38,7 @@ export default function login(){
         </div>
 
 
-
+        </>
     )
 
 
