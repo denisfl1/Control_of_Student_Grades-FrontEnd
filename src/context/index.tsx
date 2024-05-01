@@ -9,7 +9,7 @@ export function AppWrapper({children} : {
     children:React.ReactNode
 
 }){
-    let [logged,setLogged] = useState()
+    let [logged,setLogged] = useState([])
 
     return(
 
