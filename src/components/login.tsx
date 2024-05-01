@@ -1,13 +1,11 @@
-
-
 "use client"
 
 import background from "@/imgs/classroom.jpg"
 
 export default function login(){
 
-    function handleLogin(){
-
+    function handleLogin(e:React.MouseEvent<HTMLButtonElement>){
+    e.preventDefault()
     
     alert("logado")
 
@@ -30,7 +28,7 @@ export default function login(){
                 <input placeholder="Senha" type="text" name="text"></input>
 
 
-                <button onClick={handleLogin} className="bg-yellow-300">LOGIN</button>
+                <button onClick={handleLogin} className="bg-blue-500">LOGIN</button>
 
             </form>
 

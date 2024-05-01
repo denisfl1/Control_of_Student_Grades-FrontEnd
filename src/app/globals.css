@@ -28,7 +28,43 @@
 }
 
 .loginIMG{
-  position: absolute;
+  position:absolute;
   height: 100%;
   width: 100%;
+}
+
+.ContainerMenu ul{
+  width: 600px;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+.ContainerMenu li{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  line-height: 100px;
+  background-color: rgb(243, 243, 243);
+  border-bottom: 1px solid rgb(204, 204, 204);
+  padding-left: 20px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.ContainerMenu li:first-child{
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.ContainerMenu li img{
+  cursor: pointer;
+}
+
+.background{
+  min-height: 100vh;
+  min-width: 100vw;
+  background-color: rgba(240, 248, 255, 0.368);
+  z-index:-1;
+  left: 0;
+  position: absolute
 }
