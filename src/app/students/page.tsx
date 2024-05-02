@@ -32,9 +32,15 @@ export default function studentsList(){
 
             <div>
         {students.map((student: any) => (
-        <div key={student.id}>
-          {student.name}
-        </div>
+            
+
+            <ul>
+                <li>
+                    {student.name} {student.surname}
+                </li>
+            
+
+            </ul>
 
       ))}
               
