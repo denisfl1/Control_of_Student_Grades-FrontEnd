@@ -68,3 +68,17 @@
   left: 0;
   position: absolute
 }
+
+
+th{
+padding: 15px;
+
+}
+
+td{
+  border-bottom: 1px solid rgb(207, 207, 207);
+  font-size: 18px;
+  padding: 10px;
+ 
+}
+
