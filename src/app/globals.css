@@ -69,9 +69,32 @@
   position: absolute
 }
 
+.studentsListContainer{
+  height: 100vh;
+  border-radius: 5px;
+}
+.studentsTable{
+  height: 600px;
+  overflow-x: auto;
+  overflow-y: scroll;
+}
+.studentsTable::-webkit-scrollbar{
+  background-color: #e5e9f2;
+  width: 10px;
+}
+
+.studentsTable::-webkit-scrollbar-thumb{
+  background-color: rgb(167, 167, 167);
+}
+
+table{
+  background-color: aliceblue;
+
+}
 
 th{
 padding: 15px;
+text-align: left;
 
 }
 
@@ -81,4 +104,34 @@ td{
   padding: 10px;
  
 }
+
+.containerInput{
+  border: 1px solid black;
+  width: 400px;
+  height: 40px;
+  display: flex;
+  background-color: white;
+  align-items: center;
+  padding-right: 10px;
+}
+
+.containerInput input{
+height: 100%;
+padding-left: 10px;
+padding-right: 10px;
+font-size: 20px;
+}
+
+.containerInput img{
+width: 30px;
+height: 30px;
+}
+
+select{
+  border: 1px solid black;
+  height: 30px;
+  width: 250px;
+}
+
+
 

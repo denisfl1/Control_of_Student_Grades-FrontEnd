@@ -4,12 +4,17 @@ import React from "react";
 import { useEffect, useState } from "react";
 import {API} from "@/api/api"
 import Header from "@/components/header";
-
+import see from "@/imgs/user-list.png"
+import Link from "next/link";
+import background from "@/imgs/classroom.jpg"
+import lupa from "@/imgs/lupa.png"
 
 export default function studentsList(){
 
     const [students,setStudents] = useState<string[]>([])
- 
+    const key = ['name','surname','ra']
+    const [search,setSearch] = useState<string[]>([])
+    const filterNote = typeof search !== undefined ? students.filter((data:any)=>key.find(keys=>data[keys].toLowerCase().includes(search))):students
 
     const color=(student:any)=>{
         let sum = 0
@@ -19,7 +24,7 @@ export default function studentsList(){
         sum+=student['notes'][i] / 13
 
         }
-       
+    sum = Math.round(sum)
        
     if(sum > 8 ) return "#32CD32" 
     if(sum == 7 || 8 ) return "#4169E1"
@@ -39,22 +44,75 @@ export default function studentsList(){
     },[])
 
 
+    let option = []
+
+    for(let i= 0;i<=10;i++){
+        option.push(i)
+    }
+
+
+    const selectFilterNote=(data:string[],target:any)=>{
+        let arr:any[]= []
+        data.map((it:any)=>{
+        let sum = 0
+
+            for(let i in it.notes){
+               
+            sum+= it.notes[i] / 13
+            
+            }
+            sum = Math.round(sum)
+            if(sum == target ){
+               arr.push(it.ra)
+              
+            }
+           
+        })
+        console.log(arr)
+        setSearch(arr[0])
+    
+    
+    }
+
+
+
+
+
+
+
+
+
     return(
 
         <div className="studentsContainer  h-screen w-full">
 
             <Header></Header>
+            <img style={{zIndex:-1,position:'absolute'}} src={background.src}></img>
+            <div className="studentsListContainer w-full mt-5" >
+                <div className="flex h-20 w-9/12 m-auto bg-opacity-80 bg-white t-0 justify-around items-center" style={{borderTopLeftRadius:'10px',borderTopRightRadius:'10px'}}>
+                <div className="containerInput"><input onChange={(e:any)=>setSearch(e.target.value)} placeholder="Nome ou RA" className="w-full" type="text"></input><img src={lupa.src}></img></div>
+                <select onChange={(e:any)=>selectFilterNote(students,e.target.value)}>
+                    <option>Notas</option>
+                    {option.map((data)=>{
+                    return(
+                        <option key={data} value={data}>{data}</option>
+                    )
 
-            <div>
-            <table className="studentsTable">
+                    })}
+                  
+                  
+                </select>
+                </div>
+            <div className="studentsTable w-9/12 m-auto ">
+            <table className=" w-full">
             <thead>
 
                 <tr>
                     <th>RA</th>
                     <th>Nome</th>
                     <th>Sobrenome</th>            
-                    <th>Nota Final</th>
-                    <th>Ver todas</th>
+                    <th className="text-center">Nota Final</th>
+                    <th className="text-center">Todas</th>
                  
 
 
@@ -65,7 +123,7 @@ export default function studentsList(){
 
             <tbody>
 
-            {students.map((student: any) => {
+            {filterNote.map((student: any) => {
             const notes = (()=>{
                 let sum = 0
                 for(let i in student.notes){
@@ -82,7 +140,7 @@ export default function studentsList(){
             <td>{student.name}</td>
             <td>{student.surname}</td>
             <td className="text-center" style={{backgroundColor:color(student)}}>{notes()}</td>
-            <td><button>Ver</button></td>
+            <td><Link href='/home'><img className="w-8 m-auto" src={see.src}></img></Link></td>
          
         </tr>
       )})}
@@ -91,6 +149,7 @@ export default function studentsList(){
 
  
             </table>
+            </div>
             </div>
 
         </div>
