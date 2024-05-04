@@ -76,7 +76,7 @@
 .studentsTable{
   height: 600px;
   overflow-x: auto;
-  overflow-y: scroll;
+  overflow-y:auto;
 }
 .studentsTable::-webkit-scrollbar{
   background-color: #e5e9f2;
@@ -129,7 +129,7 @@ height: 30px;
 
 select{
   border: 1px solid black;
-  height: 30px;
+  height: 40px;
   width: 250px;
 }
 

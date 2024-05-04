@@ -54,6 +54,7 @@ export default function studentsList(){
 
     const selectFilterNote=(data:string[],target:any)=>{
         let arr:string[]= []
+
         data.map((it:any)=>{
         let sum = 0
 
@@ -103,11 +104,9 @@ export default function studentsList(){
                     <th>RA</th>
                     <th>Nome</th>
                     <th>Sobrenome</th>            
-                    <th className="text-center">Nota Final</th>
+                    <th className="text-center">Média</th>
                     <th className="text-center">Todas</th>
                  
-
-
                 </tr>
 
                     
