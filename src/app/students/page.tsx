@@ -17,22 +17,27 @@ export default function studentsList(){
     const [search,setSearch] = useState<string[]>([])
     const filterNote = search[0] ? students.filter((data:any)=>key.find(keys=>data[keys].toLowerCase().includes(search) || data[keys].includes(search))) : average && typeof average[0] != 'undefined' ? average : students
 
-    const color=(student:any)=>{
-        let sum = 0
+    const notes=(type:string,student:any)=>{
+        let sum:any = 0
 
         for(let i in student['notes']){
-
-        sum+=student['notes'][i] / 13
-
+          
+        sum = Object.values(student['notes']['Média']).reduce((a:any,b:any)=>a+b,0)
+        sum = sum / 13
         }
-    sum = Math.round(sum)
-       
-    if(sum > 8 ) return "#32CD32" 
-    if(sum == 7 || 8 ) return "#4169E1"
-    if(sum <5 ) return "#FF0000"
-
+        sum = Math.round(sum) 
+     
+        if(type == 'color'){
+        if(sum >= 7 ) return "#32CD32"
+        return "#FF0000"
+    
+        }else{
+            if(sum <= 7 )return "Aprovado"
+            return "Reprovado"
+        }
      
     }
+
 
     useEffect(()=>{
 
@@ -113,29 +118,39 @@ export default function studentsList(){
             </thead>
 
             <tbody>
-        
-            {filterNote.map((student: any) => {
-            const notes = (()=>{
-                let sum = 0
-                for(let i in student.notes){
-                    sum+= student.notes[i] / 13
-                }
-            return Math.round(sum)
-            })
+               
+            {filterNote.map((student: any,index:number) => {
+            const mat =  [
+
+            'Português',
+            'Literatura',
+            'Inglês',
+            'Matemática',
+            'Física',
+            'Química',
+            'Biologia',
+            'Geografia',
+            'História',
+            'Sociologia',
+            'Filosofia',
+            'Artes',
+            'Educação Física'
+
+            ]
+            notes('notes',student)
         
             return (
                 
             <tr key={student.id}>
-            
             <td>{student.ra}</td>    
             <td>{student.name}</td>
             <td>{student.surname}</td>
-            <td className="text-center" style={{backgroundColor:color(student)}}>{notes()}</td>
+            <td className="text-center" style={{backgroundColor:notes('color',student)}}>{notes('notes',student)}</td>
             <td><Link href='/home'><img className="w-8 m-auto" src={see.src}></img></Link></td>
          
         </tr>
       )})}
-
+    
             </tbody>
 
  
