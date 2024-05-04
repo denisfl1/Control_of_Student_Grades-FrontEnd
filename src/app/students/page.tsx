@@ -12,9 +12,10 @@ import lupa from "@/imgs/lupa.png"
 export default function studentsList(){
 
     const [students,setStudents] = useState<string[]>([])
+    const [average,setAverage] = useState<string[]>()
     const key = ['name','surname','ra']
     const [search,setSearch] = useState<string[]>([])
-    const filterNote = typeof search !== undefined ? students.filter((data:any)=>key.find(keys=>data[keys].toLowerCase().includes(search))):students
+    const filterNote = search[0] ? students.filter((data:any)=>key.find(keys=>data[keys].toLowerCase().includes(search) || data[keys].includes(search))) : average && typeof average[0] != 'undefined' ? average : students
 
     const color=(student:any)=>{
         let sum = 0
@@ -52,36 +53,27 @@ export default function studentsList(){
 
 
     const selectFilterNote=(data:string[],target:any)=>{
-        let arr:any[]= []
+        let arr:string[]= []
         data.map((it:any)=>{
         let sum = 0
 
             for(let i in it.notes){
                
             sum+= it.notes[i] / 13
-            
+
             }
             sum = Math.round(sum)
             if(sum == target ){
-               arr.push(it.ra)
-              
+             arr.push(it)    
             }
-           
+            
         })
-        console.log(arr)
-        setSearch(arr[0])
-    
+      
+        return setAverage(arr)
     
     }
 
-
-
-
-
-
-
-
-
+   
     return(
 
         <div className="studentsContainer  h-screen w-full">
@@ -122,7 +114,7 @@ export default function studentsList(){
             </thead>
 
             <tbody>
-
+        
             {filterNote.map((student: any) => {
             const notes = (()=>{
                 let sum = 0
