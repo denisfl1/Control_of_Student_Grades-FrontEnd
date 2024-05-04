@@ -32,7 +32,7 @@ export default function studentsList(){
         return "#FF0000"
     
         }else{
-            if(sum <= 7 )return "Aprovado"
+            if(sum >= 7 )return "Aprovado"
             return "Reprovado"
         }
      
