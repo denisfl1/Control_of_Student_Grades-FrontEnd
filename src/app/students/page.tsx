@@ -18,32 +18,56 @@ export default function studentsList(){
     const filterNote = search[0] ? students.filter((data:any)=>key.find(keys=>data[keys].toLowerCase().includes(search) || data[keys].includes(search))) : average && typeof average[0] != 'undefined' ? average : students
 
     const notes=(type:string,student:any)=>{
-        let sum:any = 0
+    
+        let sumport = 0
+    
 
+        let keys = ['português',
+            'literatura',
+            'inglês',
+            'matemática',
+            'física',
+            'química',
+            'biologia',
+            'geografia',
+            'história',
+            'sociologia',
+            'filosofia',
+            'artes',
+            'educação_física']
         for(let i in student['notes']){
+        
+        if(i != 'Média'){
+
+            keys.forEach((data)=>{
+                sumport += student['notes'][i][data] / 4
+
+            })
           
-        sum = Object.values(student['notes']['Média']).reduce((a:any,b:any)=>a+b,0)
-        sum = sum / 13
         }
-        sum = Math.round(sum) 
+      
+        }
+        sumport = Math.round(sumport)/13
+        console.log(sumport)
      
         if(type == 'color'){
-        if(sum >= 7 ) return "#32CD32"
+        if( sumport >= 7 ) return "#32CD32"
         return "#FF0000"
     
         }else{
-            if(sum >= 7 )return "Aprovado"
-            return "Reprovado"
+            if( sumport >= 7 )return "APROVADO"
+            return "REPROVADO"
         }
      
     }
 
-
+   
     useEffect(()=>{
 
         API.get('/getStudent').then(
             res=>{         
-                setStudents(res.data)  
+                setStudents(res.data)
+                console.log(res.data)
             }
         )
 
@@ -109,7 +133,7 @@ export default function studentsList(){
                     <th>RA</th>
                     <th>Nome</th>
                     <th>Sobrenome</th>            
-                    <th className="text-center">Média</th>
+                    <th className="text-center">Situação</th>
                     <th className="text-center">Todas</th>
                  
                 </tr>
@@ -145,7 +169,7 @@ export default function studentsList(){
             <td>{student.ra}</td>    
             <td>{student.name}</td>
             <td>{student.surname}</td>
-            <td className="text-center" style={{backgroundColor:notes('color',student)}}>{notes('notes',student)}</td>
+            <td className="text-center" style={{backgroundColor:notes('color',student),color:'white'}}>{notes('notes',student)}</td>
             <td><Link href='/home'><img className="w-8 m-auto" src={see.src}></img></Link></td>
          
         </tr>

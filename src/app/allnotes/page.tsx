@@ -21,6 +21,24 @@ export default function studentNotes (){
 
     },[])
 
+
+    const Subjects =  [
+
+        'Português',
+        'Literatura',
+        'Inglês',
+        'Matemática',
+        'Física',
+        'Química',
+        'Biologia',
+        'Geografia',
+        'História',
+        'Sociologia',
+        'Filosofia',
+        'Artes',
+        'Educação Física'
+
+        ]
   
 
     return(
@@ -44,41 +62,15 @@ export default function studentNotes (){
 
             <tbody>
         
-            {students.map((student: any,index:number) => {
-            const Subjects=  [
-
-            'Português',
-            'Literatura',
-            'Inglês',
-            'Matemática',
-            'Física',
-            'Química',
-            'Biologia',
-            'Geografia',
-            'História',
-            'Sociologia',
-            'Filosofia',
-            'Artes',
-            'Educação Física'
-
-            ]
-            
-    
-
-            const notes = (()=>{
-                let sum = 0
-                for(let i in student.notes){
-                    sum= student.notes[i] 
-                }
-            return Math.round(sum)
-            })
-        
+            {Subjects.map((materias: any) => {
+          
+                
             return (
                 
                 <tr>
 
-                    <td>{Subjects}</td>
-
+                    <td>{materias}</td>
+                    <td></td>
 
 
                 </tr>
