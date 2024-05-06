@@ -99,16 +99,21 @@ export default function studentNotes (){
                     <>
 
                     {keys.map((it,index)=>{
-                        let sum = (data['1'][it]+data['2'][it]+data['3'][it]+data['4'][it])/4
-                          
+                      
+                        let first =  data['1'][it]
+                        let second = data['2'][it]
+                        let third = data['3'][it]
+                        let fourth = data['4'][it]
+                        let sum = Math.round((first+second+third+fourth)/4)
+
                         return(
                         <tr>
                             <td >{Subjects[index]}</td>
-                            <td style={{backgroundColor:notesColor(data['1'][it])}}>{data['1'][it]}</td>
-                            <td>{data['2'][it]}</td>
-                            <td>{data['3'][it]}</td>
-                            <td>{data['4'][it]}</td>
-                            <td>{Math.round(sum)}</td>
+                            <td style={{backgroundColor:notesColor(first)}}>{first}</td>
+                            <td style={{backgroundColor:notesColor(second)}}>{second}</td>
+                            <td style={{backgroundColor:notesColor(third)}}>{third}</td>
+                            <td style={{backgroundColor:notesColor(fourth)}}>{fourth}</td>
+                            <td style={{backgroundColor:notesColor(sum)}}>{sum}</td>
                         </tr>
                         )
                     })}
