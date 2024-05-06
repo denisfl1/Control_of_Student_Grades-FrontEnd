@@ -21,7 +21,6 @@ export default function studentsList(){
     
         let sumport = 0
     
-
         let keys = ['português',
             'literatura',
             'inglês',
@@ -36,19 +35,19 @@ export default function studentsList(){
             'artes',
             'educação_física']
         for(let i in student['notes']){
-        
+     
         if(i != 'Média'){
 
             keys.forEach((data)=>{
-                sumport += student['notes'][i][data] / 4
 
+                sumport += student['notes'][i][data] / 4
+               
             })
           
         }
       
         }
         sumport = Math.round(sumport)/13
-        console.log(sumport)
      
         if(type == 'color'){
         if( sumport >= 7 ) return "#32CD32"
@@ -64,7 +63,7 @@ export default function studentsList(){
    
     useEffect(()=>{
 
-        API.get('/getStudent').then(
+        API.get('/getStudents').then(
             res=>{         
                 setStudents(res.data)
                 console.log(res.data)
