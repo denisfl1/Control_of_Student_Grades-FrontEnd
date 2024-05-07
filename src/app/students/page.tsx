@@ -200,7 +200,7 @@ export default function studentsList(){
             <td>{student.name}</td>
             <td>{student.surname}</td>
             <td className="text-center" style={{backgroundColor:notes('color',student),color:'white'}}>{notes('notes',student)}</td>
-            <td><Link href='/home'><img className="w-8 m-auto" src={see.src}></img></Link></td>
+            <td><Link href={`/allnotes/${student.ra}`}><img className="w-8 m-auto" src={see.src}></img></Link></td>
          
         </tr>
       )})}

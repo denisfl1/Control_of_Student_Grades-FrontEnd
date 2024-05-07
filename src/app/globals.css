@@ -146,9 +146,21 @@ select{
   /* color:rgb(147, 27, 51); */
 }
 
-.studentInfo{
-  margin-left: 40px;
+.studentInfoContainer{
+  /* margin-left: 200px; */
+  display: flex;
+  align-items: center;
+  justify-content: left;
 }
+
+.studentInfo{
+display: flex;
+flex-direction: column;
+margin-left: 200px;
+
+
+}
+
 .tableAllNotesSubContainer{
 width: 100%;
 }
