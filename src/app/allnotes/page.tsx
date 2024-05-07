@@ -5,7 +5,7 @@ import {API} from "@/api/api"
 
 export default function studentNotes (){
 
-    const [students,setStudents] = useState<string[]>([])
+    const [students,setStudents] = useState<any>([])
     const [notes,setNotes] = useState<string[]>([])
 
     useEffect(()=>{
@@ -13,7 +13,7 @@ export default function studentNotes (){
        API.get('/getStudent').then(
         res=>{
             const data = res.data
-            setStudents([res.data])  
+            setStudents(data)  
             setNotes([data.notes])
    
         }
@@ -24,15 +24,10 @@ export default function studentNotes (){
     },[])
 
     const notesColor=(val:any)=>{
-       
 
-        
-     
         if( val >= 7 ) return "#32CD32"
         return "#FF0000"
-    
-        
-     
+
     }
 
 
@@ -57,9 +52,18 @@ export default function studentNotes (){
   
 
     return(
-    <div>
+    <div className="tableAllNotesContainer">
 
-        <table className=" w-full">
+        <div className="studentInfo" style={{height:'150px'}}>
+          <div style={{display:'flex',alignItems:"center",fontWeight:"bold",fontSize:'35px'}}><h1 >Aluno:</h1><h1 style={{fontWeight:"normal"}}>{students.name} {students.surname}</h1></div> 
+          <div style={{display:'flex',alignItems:"center",fontWeight:"bold",fontSize:'35px'}}><h1 >RA:</h1><h1 style={{fontWeight:"normal"}}>{students.ra}</h1></div> 
+
+        </div>
+
+        <div className="tableAllNotesSubContainer">
+
+        <table className="tableAllNotes  w-full">
+       
             <thead>
 
                 <tr>
@@ -100,7 +104,7 @@ export default function studentNotes (){
 
                     {keys.map((it,index)=>{
                       
-                        let first =  data['1'][it]
+                        let first = data['1'][it]
                         let second = data['2'][it]
                         let third = data['3'][it]
                         let fourth = data['4'][it]
@@ -108,7 +112,7 @@ export default function studentNotes (){
 
                         return(
                         <tr>
-                            <td >{Subjects[index]}</td>
+                            <td>{Subjects[index]}</td>
                             <td style={{backgroundColor:notesColor(first)}}>{first}</td>
                             <td style={{backgroundColor:notesColor(second)}}>{second}</td>
                             <td style={{backgroundColor:notesColor(third)}}>{third}</td>
@@ -132,7 +136,7 @@ export default function studentNotes (){
         </table>
 
 
-
+        </div>        
 
 
     </div>

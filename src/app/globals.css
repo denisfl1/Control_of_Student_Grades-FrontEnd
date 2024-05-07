@@ -133,6 +133,27 @@ select{
   width: 250px;
   font-size: 20px;
 }
+.tableAllNotesContainer{
+  width: 100%;
+}
 
+.tableAllNotes  td:not(:first-child){
+  text-align: center;
+}
+.tableAllNotes  td{
+    border:2px solid rgb(0, 0, 0);
+  font-weight: bolder;
+  /* color:rgb(147, 27, 51); */
+}
 
+.studentInfo{
+  margin-left: 40px;
+}
+.tableAllNotesSubContainer{
+width: 100%;
+}
 
+.tableAllNotes{
+  margin: auto;
+  width: 80%;
+}

@@ -12,7 +12,7 @@ import lupa from "@/imgs/lupa.png"
 export default function studentsList(){
 
     const [students,setStudents] = useState<string[]>([])
-    const [average,setAverage] = useState<string[]>()
+    const [average,setAverage] = useState<any>([])
     const key = ['name','surname','ra']
     const [search,setSearch] = useState<string[]>([])
     const filterNote = search[0] ? students.filter((data:any)=>key.find(keys=>data[keys].toLowerCase().includes(search) || data[keys].includes(search))) : average && typeof average[0] != 'undefined' ? average : students
@@ -50,8 +50,8 @@ export default function studentsList(){
         sumport = Math.round(sumport)/13
      
         if(type == 'color'){
-        if( sumport >= 7 ) return "#32CD32"
-        return "#FF0000"
+            if( sumport >= 7 ) return "#32CD32"
+            return "#FF0000"
     
         }else{
             if( sumport >= 7 )return "APROVADO"
@@ -66,40 +66,75 @@ export default function studentsList(){
         API.get('/getStudents').then(
             res=>{         
                 setStudents(res.data)
-                console.log(res.data)
+               
             }
         )
 
     },[])
 
 
-    let option = []
-
-    for(let i= 0;i<=10;i++){
-        option.push(i)
-    }
 
 
     const selectFilterNote=(data:string[],target:any)=>{
-        let arr:string[]= []
+        let aproved:string[]= []
+        let reproved:string[]= []
+
+        let keys = ['português',
+            'literatura',
+            'inglês',
+            'matemática',
+            'física',
+            'química',
+            'biologia',
+            'geografia',
+            'história',
+            'sociologia',
+            'filosofia',
+            'artes',
+            'educação_física']
 
         data.map((it:any)=>{
-        let sum = 0
+        let sum:any = 0
 
             for(let i in it.notes){
-               
-            sum+= it.notes[i] / 13
+            
+            if(i != 'Média'){
+             
+                keys.forEach((x)=>{
+                    sum+= it.notes[i][x] / 4
+                  
+                })
+                
+            }
 
             }
-            sum = Math.round(sum)
-            if(sum == target ){
-             arr.push(it)    
+  
+            sum = Math.round((sum)/13)
+     
+     
+            if(sum >= 7){
+               
+            aproved.push(it)
+              
             }
             
+            if(sum <= 6){
+            reproved.push(it)
+            }
+            
+       
         })
-      
-        return setAverage(arr)
-    
+        
+        if(target == "aprovado"){
+          return  setAverage(aproved)
+        }
+        else if(target == "reprovado"){
+          return  setAverage(reproved)
+        }else{
+            setAverage([])
+        }
+       
+       
     }
 
    
@@ -113,15 +148,11 @@ export default function studentsList(){
                 <div className="flex h-20 w-9/12 m-auto bg-opacity-80 bg-white t-0 justify-around items-center" style={{borderTopLeftRadius:'10px',borderTopRightRadius:'10px'}}>
                 <div className="containerInput"><input onChange={(e:any)=>setSearch(e.target.value)} placeholder="Nome ou RA" className="w-full" type="text"></input><img src={lupa.src}></img></div>
                 <select onChange={(e:any)=>selectFilterNote(students,e.target.value)}>
-                    <option>Notas</option>
-                    {option.map((data)=>{
-                    return(
-                        <option key={data} value={data}>{data}</option>
-                    )
-
-                    })}
-                  
-                  
+        
+                  <option>Todos</option>
+                  <option value={'reprovado'}>Reprovado</option>
+                  <option value={'aprovado'}>Aprovado</option>
+           
                 </select>
                 </div>
             <div className="studentsTable w-9/12 m-auto ">
