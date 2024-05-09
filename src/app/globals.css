@@ -135,6 +135,7 @@ select{
 }
 .tableAllNotesContainer{
   width: 100%;
+  min-height: 100vh;
 }
 
 .tableAllNotes  td:not(:first-child){
@@ -143,22 +144,39 @@ select{
 .tableAllNotes  td{
     border:2px solid rgb(0, 0, 0);
   font-weight: bolder;
-  /* color:rgb(147, 27, 51); */
 }
 
 .studentInfoContainer{
-  /* margin-left: 200px; */
   display: flex;
   align-items: center;
-  justify-content: left;
+  justify-content: space-around;
 }
 
 .studentInfo{
 display: flex;
 flex-direction: column;
-margin-left: 200px;
+margin-left: -100px;
 
 
+}
+
+.legContainer p{
+margin-left: 5px;
+font-weight: bold;
+}
+
+.Leg {
+  height:25px;
+  width:25px;
+
+}
+
+.aproved{
+  background-color:#87CEFA;
+}
+
+.reproved{
+  background-color:#FA8072;
 }
 
 .tableAllNotesSubContainer{
