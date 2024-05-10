@@ -61,6 +61,7 @@ export default function studentNotes ({params}:idParams){
     <div className="tableAllNotesContainer">
           
         <div className="studentInfoContainer" style={{height:'150px',backgroundColor:"#F3F4F6"}}>
+             
 
         <div className="studentInfo" >
           <div style={{display:'flex',alignItems:"center",fontWeight:"bold",fontSize:'35px'}}><h1 >Aluno:</h1><h1 style={{fontWeight:"normal"}}>{students.name} {students.surname}</h1></div> 
@@ -83,7 +84,7 @@ export default function studentNotes ({params}:idParams){
         </div>
 
         <div className="tableAllNotesSubContainer">
-        <img style={{zIndex:-1,position:'absolute'}} src={background.src}></img>
+        <img style={{zIndex:-1,position:'absolute',width:"100%",maxHeight:"100%"}} src={background.src}></img>
         <div className="background"></div>
         <table className="tableAllNotes  w-full">
        
@@ -127,12 +128,13 @@ export default function studentNotes ({params}:idParams){
 
                     {keys.map((it,index)=>{
                       
-                        let first = data['1'][it]
-                        let second = data['2'][it]
-                        let third = data['3'][it]
-                        let fourth = data['4'][it]
-                        let sum = Math.round((first+second+third+fourth)/4)
-
+                        let first = data['1'][it]  
+                        let second = data['2'][it] 
+                        let third = data['3'][it] 
+                        let fourth = data['4'][it] 
+                        let sum = first == null || second == null || third == null || fourth == null ? " - " : Math.round((first+second+third+fourth)/4)
+                        
+                      
                         return(
                         <tr>
                             <td>{Subjects[index]}</td>
