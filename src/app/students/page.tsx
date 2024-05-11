@@ -20,6 +20,7 @@ export default function studentsList(){
     const notes=(type:string,student:any)=>{
     
         let sumport = 0
+        let awaiting = false
     
         let keys = ['português',
             'literatura',
@@ -41,19 +42,28 @@ export default function studentsList(){
             keys.forEach((data)=>{
 
                 sumport += student['notes'][i][data] / 4
-               
+                
+                if(student['notes'][i][data] == null){
+                    awaiting  = true
+                }
+
+
             })
           
         }
       
         }
         sumport = Math.round(sumport)/13
-     
+    
         if(type == 'color'){
+            
+            if(awaiting)return "#F4A460"
             if( sumport >= 7 ) return "#32CD32"
             return "#FF0000"
     
         }else{
+            
+            if(awaiting)return  "AGUARDANDO"
             if( sumport >= 7 )return "APROVADO"
             return "REPROVADO"
         }
@@ -104,6 +114,7 @@ export default function studentsList(){
                     sum+= it.notes[i][x] / 4
                   
                 })
+                
                 
             }
 
@@ -191,8 +202,7 @@ export default function studentsList(){
             'Educação Física'
 
             ]
-            notes('notes',student)
-        
+            
             return (
                 
             <tr key={student.id}>

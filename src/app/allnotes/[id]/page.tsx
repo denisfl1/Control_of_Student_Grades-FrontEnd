@@ -132,8 +132,8 @@ export default function studentNotes ({params}:idParams){
                       
                         let first = data['1'][it]  
                         let second = data['2'][it] 
-                        let third = data['3'][it] 
-                        let fourth = data['4'][it] 
+                        let third = data['3'][it]   
+                        let fourth = data['4'][it]  
                         let sum = first == null || second == null || third == null || fourth == null ? " - " : Math.round((first+second+third+fourth)/4)
                         
                       

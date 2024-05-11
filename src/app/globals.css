@@ -8,7 +8,9 @@
   width: 450px;
   height: 500px;
   border-radius: 5px;
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .loginContent input{
@@ -18,6 +20,10 @@
   padding-right: 20px;
   font-size: 20px;
 
+}
+
+.loginContent form{
+margin-top: 50px;
 }
 
 .loginContent button{
@@ -32,11 +38,31 @@
   height: 100%;
   width: 100%;
 }
+.schoolIconContainer{
+  width:85px;
+  height: 85px;
+  margin-top: 80px;
+}
+
+.schoolIcon{
+  width: 100%;
+  height:100%;
+}
+
+.LogoutButton{
+  width: 80px;
+  height: 30px;
+  background-color: #3b82f6;
+  border-radius: 10px;
+  color: white;
+  margin-right: 20px;
+}
 
 .ContainerMenu ul{
   width: 600px;
   margin-top: 20px;
   margin-left: 20px;
+
 }
 
 .ContainerMenu li{
@@ -61,8 +87,8 @@
 }
 
 .background{
-  min-height: 100vh;
-  min-width: 100vw;
+  min-height: 100%;
+  min-width: 100%;
   background-color: rgba(240, 248, 255, 0.368);
   z-index:-1;
   left: 0;
@@ -190,42 +216,73 @@ width: 100%;
   width: 80%;
 }
 
-.addStudentCompContainer{
-  width: 800px;
-  background-color:#F3F4F6;
-  height: 400px;
+.addStudentContainer{
+min-height: 100%;
+display: flex;
+}
+
+.addStudentSubContainer{
+  /* width: 800px;
+  background-color:aliceblue;
+  height: 500px;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   justify-content: center;
-  border: 1px solid black;
-  border-radius: 5px;
-}
-
-.addStudentComp{
- justify-content: center;
- width: 80%;
+  align-items: center;
+  position: relative;
+  border-radius: 8px; */
 
 }
 
-.addStudentCompContainer label{
+
+.containerAddStudentIMG{
+  height: 100px;
+  margin-top: 20px;
+}
+.addStudentContainer img{
+ 
+  margin: auto;
+}
+
+.addStudentSubContainer{
+  background-color: #F0F8FF;
+  border-radius: 10px;
+  margin: auto;
+  margin-top: 20px;
+  width: 700px;
+  height: 500px;
+}
+
+.addStudentContent{
+  display: flex;
+  width: 500px;
+  flex-direction: column;
+  margin: auto;
+}
+
+
+.addStudentContainer label{
 font-size: 20px;
 margin-top: 10px;
 font-weight: bold;
 }
 
-.addStudentCompContainer input{
-  border:1px solid black;
-  height: 35px;
-  width: 100%;
-  
+.addStudentContainer input{
+  border:1px solid rgb(154, 154, 154);
+  /* border-radius: 8px; */
+  height: 40px;
+  font-size: 20px;
+  padding-left: 10px;
+
 }
 
-.addStudentCompContainer button{
+.addStudentContainer button{
   margin-top: 10px;
   width: 100%;
   background-color:#3b82f6;
-  height: 35px;
-  border-radius: 2px;
+  height: 40px;
+  /* border-radius: 8px; */
   color: white;
+  font-weight: bold;
 }
 
