@@ -3,6 +3,7 @@
 import background from "@/imgs/classroom.jpg"
 import school from "@/imgs/school.png"
 import { useState } from "react"
+import {API} from "@/api/api"
 
 export default function login(){
 
@@ -13,9 +14,15 @@ export default function login(){
     function handleLogin(e:React.MouseEvent<HTMLButtonElement>){
     e.preventDefault()
     
-    // alert("logado")
 
-    console.log(credential,password)
+        API.post('/loginTeatcher',{credential,password}).then(
+            res=>{
+                console.log(res.data)
+            }
+
+        )
+
+
 
 
 
