@@ -1,4 +1,5 @@
 import {createContext, useContext, useState} from 'react'
+import {API} from "@/api/api"
 
 const AppContext = createContext<any>(undefined)
 
@@ -8,6 +9,10 @@ export function AppWrapper({children} : {
 
 }){
     let [logged,setLogged] = useState('world')
+
+    const token  = localStorage.getItem('token')
+
+    API.defaults.headers.Authorization = token
 
     return(
 

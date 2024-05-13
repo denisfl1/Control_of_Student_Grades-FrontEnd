@@ -19,7 +19,7 @@ export default function studentsList(){
 
     const notes=(type:string,student:any)=>{
     
-        let sumport = 0
+        let sum = 0
         let awaiting = false
     
         let keys = ['português',
@@ -41,7 +41,7 @@ export default function studentsList(){
 
             keys.forEach((data)=>{
 
-                sumport += student['notes'][i][data] / 4
+                sum += student['notes'][i][data] / 4
                 
                 if(student['notes'][i][data] == null){
                     awaiting  = true
@@ -53,18 +53,18 @@ export default function studentsList(){
         }
       
         }
-        sumport = Math.round(sumport)/13
+        sum = Math.round(sum)/13
     
         if(type == 'color'){
             
             if(awaiting)return "#F4A460"
-            if( sumport >= 7 ) return "#32CD32"
+            if( sum >= 7 ) return "#32CD32"
             return "#FF0000"
     
         }else{
             
             if(awaiting)return  "AGUARDANDO"
-            if( sumport >= 7 )return "APROVADO"
+            if( sum >= 7 )return "APROVADO"
             return "REPROVADO"
         }
      

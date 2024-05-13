@@ -13,10 +13,14 @@ export default function login(){
 
     function handleLogin(e:React.MouseEvent<HTMLButtonElement>){
     e.preventDefault()
+
     
+    
+      
 
         API.post('/loginTeatcher',{credential,password}).then(
             res=>{
+                localStorage.setItem('token',JSON.stringify(res.data.token))
                 console.log(res.data)
             }
 
@@ -42,7 +46,7 @@ export default function login(){
                 <input onChange={(e)=>setCredential(e.target.value)} placeholder="Digite suas Credenciais" type="text" name="text"></input>
 
 
-                <input onChange={(e)=>setPassword(e.target.value)} placeholder="Senha" type="password" name="password"></input>
+                <input onChange={(e)=>setPassword(e.target.value)} placeholder="Digite sua Senha" type="password" name="password"></input>
 
 
                 <button onClick={handleLogin} className="bg-blue-500">LOGIN</button>

@@ -19,6 +19,7 @@ export default function studentNotes ({params}:idParams){
        API.get(`/getStudent/${params.id}`).then(
         res=>{
             const data = res.data
+            console.log(data.notes['1'])
             setStudents(data)  
             setNotes([data.notes])
    
