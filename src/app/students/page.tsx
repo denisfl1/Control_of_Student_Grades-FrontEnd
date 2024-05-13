@@ -104,7 +104,7 @@ export default function studentsList(){
             'educação_física']
 
         data.map((it:any)=>{
-        let sum:any = 0
+        let sum:number = 0
 
             for(let i in it.notes){
             
