@@ -1,8 +1,10 @@
 
 "use client"
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {API} from "@/api/api"
 import background from "@/imgs/classroom.jpg"
+import { useAppContext } from "@/context";
+
 
 interface idParams{
    params:{id:string}
@@ -13,6 +15,9 @@ export default function studentNotes ({params}:idParams){
 
     const [students,setStudents] = useState<any>([])
     const [notes,setNotes] = useState<string[]>([])
+    const {Authenticated} = useAppContext()
+
+    console.log(Authenticated)
 
     useEffect(()=>{
 
