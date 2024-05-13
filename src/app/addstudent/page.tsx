@@ -5,10 +5,9 @@ import background from "@/imgs/classroom.jpg"
 
 export default function AddStudend(){
 
-
 return(
     <>
-    <Header></Header>
+    <Header ></Header>
     <div className="addStudentContainer h-full">
     <div className="background"></div>
           <img className="loginIMG" src={background.src} style={{zIndex:'-2'}}></img>

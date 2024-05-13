@@ -3,15 +3,28 @@
 import {createContext, useContext, useEffect, useState} from 'react'
 import {API} from "@/api/api"
 
-const AppContext = createContext<any>(undefined)
+interface ContextTypes{
+Logged?:(data:any)=>void;
+Logout?:()=>void;
+setUser?:any;
+Authenticated:boolean;
+token?:string|null;
+    
+}
+
+const AppContext = createContext<ContextTypes>(
+    {}as ContextTypes
+)
+
+
 
 export function AppWrapper({children} : {
 
     children:React.ReactNode
 
 }){
-    let [user,setUser] = useState(null)
-    const token  = localStorage.getItem('token')
+    let [user,setUser] = useState<any>(null)
+    const token :string|null = localStorage.getItem('token')
     const TEATCHER = localStorage.getItem('teatcher')
 
     useEffect(()=>{
@@ -40,14 +53,14 @@ export function AppWrapper({children} : {
 
     const Logout=()=>{
 
-       const data_to_remove = ['token','teatcher']
+    //    const data_to_remove = ['token','teatcher']
 
-       data_to_remove.forEach((items:string)=>{
+ 
 
-        localStorage.removeItem(items)
+    //     localStorage.removeItem('token')
 
-       })
-
+     
+      return  alert("clicado")
 
     }
 

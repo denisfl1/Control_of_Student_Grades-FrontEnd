@@ -15,16 +15,14 @@ export default function studentNotes ({params}:idParams){
 
     const [students,setStudents] = useState<any>([])
     const [notes,setNotes] = useState<string[]>([])
-    const {Authenticated} = useAppContext()
+    const {Authenticated,token} = useAppContext()
 
-    console.log(Authenticated)
 
     useEffect(()=>{
 
        API.get(`/getStudent/${params.id}`).then(
         res=>{
             const data = res.data
-            console.log(data.notes['1'])
             setStudents(data)  
             setNotes([data.notes])
    
