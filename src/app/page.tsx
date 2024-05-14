@@ -1,17 +1,9 @@
 import Header from "@/components/header";
 import Menu from "@/components/menu";
 import background from "@/imgs/classroom.jpg"
-import { useAppContext } from "@/context"
 export default function Home() {
 
   
-
-  const HandleLogin=()=>{
-
-    console.log("clicado")
-
-}
-
 
   return (
 

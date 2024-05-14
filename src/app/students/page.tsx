@@ -88,7 +88,7 @@ export default function studentsList(){
     const selectFilterNote=(data:string[],target:any)=>{
         let aproved:string[]= []
         let reproved:string[]= []
-
+        let waiting:string[] = []
         let keys = ['português',
             'literatura',
             'inglês',
@@ -105,6 +105,7 @@ export default function studentsList(){
 
         data.map((it:any)=>{
         let sum:number = 0
+        let void_note = false
 
             for(let i in it.notes){
             
@@ -112,7 +113,11 @@ export default function studentsList(){
              
                 keys.forEach((x)=>{
                     sum+= it.notes[i][x] / 4
-                  
+
+                    if(it.notes[i][x] == null){
+                        void_note = true
+                    }
+
                 })
                 
                 
@@ -129,18 +134,29 @@ export default function studentsList(){
               
             }
             
-            if(sum <= 6){
+            if(sum <= 6 && !void_note){
             reproved.push(it)
             }
             
+            if(void_note){
+            waiting.push(it)
+            }
        
         })
         
         if(target == "aprovado"){
+
           return  setAverage(aproved)
+
         }
         else if(target == "reprovado"){
+
           return  setAverage(reproved)
+
+        }else if(target == "aguardando"){
+
+          return  setAverage(waiting)
+
         }else{
             setAverage([])
         }
@@ -160,9 +176,10 @@ export default function studentsList(){
                 <div className="containerInput"><input onChange={(e:any)=>setSearch(e.target.value)} placeholder="Nome ou RA" className="w-full" type="text"></input><img src={lupa.src}></img></div>
                 <select onChange={(e:any)=>selectFilterNote(students,e.target.value)}>
         
-                  <option>Todos</option>
-                  <option value={'reprovado'}>Reprovado</option>
+                  <option>Todos</option>     
                   <option value={'aprovado'}>Aprovado</option>
+                  <option value={'reprovado'}>Reprovado</option>
+                  <option value={'aguardando'}>Aguardando</option>
            
                 </select>
                 </div>

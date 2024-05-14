@@ -15,7 +15,6 @@ export default function studentNotes ({params}:idParams){
 
     const [students,setStudents] = useState<any>([])
     const [notes,setNotes] = useState<string[]>([])
-    const {Authenticated,token} = useAppContext()
 
 
     useEffect(()=>{
