@@ -50,7 +50,9 @@ export default function login(){
                 <input onChange={(e)=>setPassword(e.target.value)} placeholder="Digite sua Senha" type="password" name="password"></input>
 
 
-                <button onClick={HandleLogin} className="bg-blue-500">LOGIN</button>
+                <button onClick={HandleLogin} className="bg-blue-500" style={{
+                    backgroundColor:'rgb(0, 64, 98)'
+                }}>LOGIN</button>
 
             </form>
 

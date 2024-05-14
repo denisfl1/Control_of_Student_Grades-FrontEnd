@@ -174,7 +174,7 @@ export default function studentsList(){
             <div className="studentsListContainer w-full mt-5" >
                 <div className="flex h-20 w-9/12 m-auto bg-opacity-80 bg-white t-0 justify-around items-center" style={{borderTopLeftRadius:'10px',borderTopRightRadius:'10px'}}>
                 <div className="containerInput"><input onChange={(e:any)=>setSearch(e.target.value)} placeholder="Nome ou RA" className="w-full" type="text"></input><img src={lupa.src}></img></div>
-                <select onChange={(e:any)=>selectFilterNote(students,e.target.value)}>
+                <select className="select_situation" onChange={(e:any)=>selectFilterNote(students,e.target.value)}>
         
                   <option>Todos</option>     
                   <option value={'aprovado'}>Aprovado</option>

@@ -49,7 +49,7 @@ return(
                     <label>RA</label>
                     <input onChange={(e:any)=>setRA(e.target.value)} placeholder="RA" type="text"></input>
 
-                    <button onClick={sendData}>SALVAR</button>
+                    <button style={{backgroundColor:'rgb(0, 64, 98)'}} onClick={sendData}>SALVAR</button>
 
                     </div>
 

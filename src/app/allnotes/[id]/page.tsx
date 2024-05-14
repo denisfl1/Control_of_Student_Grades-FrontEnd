@@ -1,22 +1,21 @@
 
 "use client"
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {API} from "@/api/api"
 import background from "@/imgs/classroom.jpg"
-import { useAppContext } from "@/context";
 
 
-interface idParams{
+interface IdParams{
    params:{id:string}
 }
 
 
-export default function studentNotes ({params}:idParams){
+export default function studentNotes ({params}:IdParams){
 
     const [students,setStudents] = useState<any>([])
     const [notes,setNotes] = useState<string[]>([])
 
-
+  
     useEffect(()=>{
 
        API.get(`/getStudent/${params.id}`).then(
@@ -25,6 +24,8 @@ export default function studentNotes ({params}:idParams){
             setStudents(data)  
             setNotes([data.notes])
    
+        },error=>{
+            console.log(error.response.data)
         }
        )
 

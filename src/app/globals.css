@@ -52,7 +52,7 @@ margin-top: 50px;
 .LogoutButton{
   width: 80px;
   height: 30px;
-  background-color: #3b82f6;
+  background-color:rgb(0, 64, 98);
   border-radius: 10px;
   color: white;
   margin-right: 20px;
@@ -141,7 +141,7 @@ td{
   padding-right: 10px;
 }
 
-.containerInput input{
+.containerInput >input{
 height: 100%;
 padding-left: 10px;
 padding-right: 10px;
@@ -153,7 +153,7 @@ width: 30px;
 height: 30px;
 }
 
-select{
+.select_situation{
   border: 1px solid black;
   height: 40px;
   width: 250px;
@@ -284,5 +284,68 @@ font-weight: bold;
   /* border-radius: 8px; */
   color: white;
   font-weight: bold;
+}
+
+.addNoteSubContainer{
+  width: 500px;
+  height: 600px;
+  background-color:rgb(246, 246, 246);
+  border:2px solid black;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+}
+
+
+.addNoteContent{
+  display: flex;
+  flex-direction: column;
+
+}
+
+.addNoteContent label{
+  font-size: 30px;
+  margin-top: 10px;
+}
+
+.addNoteContent input{
+  font-size:40px
+}
+
+.addNoteContent input,select{
+  width: 100%;
+  height: 40px;
+ 
+}
+
+.addNoteContent select{
+  margin-top: 10px;
+  font-size: 20px;;
+}
+
+
+.addNoteContent{
+  width: 80%;
+  margin: auto;
+}
+
+.addNoteContent option{
+  font-size: 20px;
+}
+
+.clearButton{
+  background-color:#933b31;
+}
+.saveButton{
+  background-color:rgb(0, 64, 98)
+}
+
+.addNoteContent button{
+  height: 40px;
+  color: white;
+  width: 180px;
+  margin: auto;
+  border-radius: 5px;
+
 }
 
