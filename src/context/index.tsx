@@ -44,8 +44,15 @@ export function AppWrapper({children} : {
     const Logged=(data:any)=>{
 
         setUser(data.teatcher)
-        localStorage.setItem('token',JSON.stringify(data.token))
-        localStorage.setItem('teatcher',JSON.stringify(data.teatcher))
+
+        const data_to_save = ['token','teatcher']
+        const save=()=>{
+            return data_to_save.forEach((items:string)=>{
+                localStorage.setItem(`${items}`,JSON.stringify(data[`${items}`]))
+            })
+        }
+        save()
+
 
 
     }
@@ -53,15 +60,14 @@ export function AppWrapper({children} : {
 
     const Logout=()=>{
 
-    //    const data_to_remove = ['token','teatcher']
-
- 
-
-    //     localStorage.removeItem('token')
-
+       const data_to_remove = ['token','teatcher']
+       const remove=()=>{
+        return  data_to_remove.forEach((items:string)=>{
+               localStorage.removeItem(items)
+            })
+       }
+       remove()
      
-      return  alert("clicado")
-
     }
 
 
@@ -74,6 +80,3 @@ export function AppWrapper({children} : {
 
 }
 export const useAppContext = ()=>useContext(AppContext)
-
-// import {useAppContext} from "@/context"
-// const {hello} = useAppContext()

@@ -34,10 +34,9 @@ export default function studentNotes ({params}:idParams){
     },[])
 
     const notesColor=(val:any)=>{
-
-        
+    
         if(val >= 7 ) return "#87CEFA"
-        if(val != Number) return "#FFFFFF"
+        if(val == null || val == ' - ') return "#FFFFFF"
         return "#FA8072"
 
     }

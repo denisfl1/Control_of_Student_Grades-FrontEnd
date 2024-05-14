@@ -4,24 +4,25 @@ import background from "@/imgs/classroom.jpg"
 import school from "@/imgs/school.png"
 import { useState } from "react"
 import {API} from "@/api/api"
+import { useAppContext } from "@/context"
 
 export default function login(){
 
     const[credential,setCredential]= useState<string>()
     const[password,setPassword]= useState<string>()
+    const{Logged}=useAppContext()
 
 
-    function handleLogin(e:React.MouseEvent<HTMLButtonElement>){
+    const HandleLogin = async(e:React.MouseEvent<HTMLButtonElement>)=>{
     e.preventDefault()
 
-    
-    
-      
-
-        API.post('/loginTeatcher',{credential,password}).then(
+       await API.post('/loginTeatcher',{credential,password}).then(
             res=>{
-                localStorage.setItem('token',JSON.stringify(res.data.token))
-                console.log(res.data)
+                if(res.status == 200 && Logged)return Logged(res.data)
+               
+ 
+            },error=>{
+                console.log(error)
             }
 
         )
@@ -49,7 +50,7 @@ export default function login(){
                 <input onChange={(e)=>setPassword(e.target.value)} placeholder="Digite sua Senha" type="password" name="password"></input>
 
 
-                <button onClick={handleLogin} className="bg-blue-500">LOGIN</button>
+                <button onClick={HandleLogin} className="bg-blue-500">LOGIN</button>
 
             </form>
 
