@@ -15,7 +15,7 @@ export default function studentNotes ({params}:IdParams){
     const [students,setStudents] = useState<any>([])
     const [notes,setNotes] = useState<string[]>([])
 
-  
+    
     useEffect(()=>{
 
        API.get(`/getStudent/${params.id}`).then(

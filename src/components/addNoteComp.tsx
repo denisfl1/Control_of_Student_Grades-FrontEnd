@@ -1,17 +1,40 @@
 
+"use client"
 
+import { useEffect, useState } from "react"
 
-
-export default function AddNoteComp(){
-
-let notesVal = []
-
-
-    for(let i=0;i<=10;i++){
-        notesVal.push(i)
+interface DataType{
+    data:{
+        name:string
     }
+    
+}
+
+    
+        
+    
 
 
+
+export default function AddNoteComp(props:{data:DataType}){
+
+
+
+
+    const [name,setName] = useState<string[]>([])
+    const [Actual_Note,setActual_Note] = useState<number|string[]>(['8,5'])
+    const [Student_RA,setStudent_RA] = useState<string[]>(['123456'])
+    const [note,setNote] = useState<Number>()
+    const [two_months,setTwo_months] = useState<string[]>([])
+ 
+
+    useEffect(()=>{
+
+
+    },[props.data])
+
+
+  
 
 
 return(
@@ -21,24 +44,24 @@ return(
         <div className="addNoteContent">
 
             <label>Nome</label>
-            <input value={'Denis Ferreira'}></input>
+            <input value={name}></input>
             
             <label>RA</label>
-            <input value={'1232424'}></input>
+            <input value={Student_RA}></input>
             
             <label>Nota Atual</label>
-            <input value={'8,5'} disabled style={{backgroundColor:"white",textAlign:'center'}}></input>
+            <input value={Actual_Note} disabled style={{backgroundColor:"white",textAlign:'center'}}></input>
      
 
             <label>Digite uma Nota</label>
-            <input style={{textAlign:'center'}} type="text"></input>
+            <input onChange={(e:any)=>setNote(e.target.value)} style={{textAlign:'center'}} type="text"></input>
 
 
-            <select>
-                <option>Primeiro Bimestre</option>
-                <option>Segundo Bimestre</option>
-                <option>Terceiro Bimestre</option>
-                <option>Quarto Bimestre</option>
+            <select onChange={(e:any)=>setTwo_months(e.target.value)}>
+                <option value={'1'}>Primeiro Bimestre</option>
+                <option value={'2'}>Segundo Bimestre</option>
+                <option value={'3'}>Terceiro Bimestre</option>
+                <option value={'4'}>Quarto Bimestre</option>
             </select>
 
 
