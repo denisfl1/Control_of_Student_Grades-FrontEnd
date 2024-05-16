@@ -46,11 +46,6 @@ export default function AddNoteComp(props:{data:any}){
 
     const sendData=()=>{
       
-            console.log(note)
-            alert(typeof note)
-
-        
-        
 
         API.post('/addnote',{ra,note,two_months}).then(
             res=>{
