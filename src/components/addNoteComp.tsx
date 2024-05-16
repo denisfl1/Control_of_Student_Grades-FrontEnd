@@ -9,9 +9,9 @@ export default function AddNoteComp(props:{data:any,setData:React.Dispatch<React
     const [name,setName] = useState<any>([])
     const [Actual_Note,setActual_Note] = useState<string|number>()
     const [ra,setStudent_RA] = useState<string[]>([])
-    const [note,setNote] = useState<number|null>()
+    const [note,setNote] = useState<any>()
     const [two_months,setTwo_months] = useState<string>('1')
- 
+    
 
     useEffect(()=>{
 
@@ -20,15 +20,16 @@ export default function AddNoteComp(props:{data:any,setData:React.Dispatch<React
         let data_ra = ''
         let discipline = ''
         let data_note = ''
+        const data = props.data
    
-    for(let i in props.data){
-        data_name = props.data['alumn']['name']
-        data_surname = props.data['alumn']['surname']
-        data_ra = props.data['alumn']['ra']
-        discipline = props.data['discipline']
+    for(let i in data){
+        data_name = data['alumn']['name']
+        data_surname = data['alumn']['surname']
+        data_ra = data['alumn']['ra']
+        discipline = data['discipline']
  
-        if(props.data['alumn']['ra'] != 'Média'){
-            data_note = props.data['alumn'].notes[two_months][discipline]
+        if(data['alumn']['ra'] != 'Média'){
+            data_note = data['alumn'].notes[two_months][discipline]
 
             if(data_note == null){
                 setActual_Note("Aguardando Nota")
@@ -48,6 +49,7 @@ export default function AddNoteComp(props:{data:any,setData:React.Dispatch<React
 
 
     const sendData = async()=>{
+        
 
        await API.post('/addnote',{ra,note,two_months}).then(
             res=>{
@@ -57,17 +59,18 @@ export default function AddNoteComp(props:{data:any,setData:React.Dispatch<React
                     return {
                         ...prevState,
                         alumn:{...prevState.alumn,
-                        notes:{...prevState.alumn.notes[two_months],
+                        notes:{...prevState.alumn.notes,
                         [two_months]:{...prevState.alumn.notes[two_months],
                         [prevState.discipline]:note}}}
                       
                         }
                  })
-
+                  alert(res.data)
                 }
                    
             },error=>{
                 console.log(error)
+                alert(error.response.data)
             }
         )
 
@@ -77,7 +80,7 @@ export default function AddNoteComp(props:{data:any,setData:React.Dispatch<React
     const handleClear = ()=>{
 
         setNote(null)
-        setActual_Note('Aguardando Nota')
+        setActual_Note("Aguardando Nota")
     }
 
 
@@ -98,10 +101,11 @@ return(
      
 
             <label>Digite uma Nota</label>
-            <input onChange={(event)=>{
-                 const value = Number(event.target.value)
-                 setNote(value)
-            }} style={{textAlign:'center'}} type="text"></input>
+            <input value={note} onChange={(event)=>{
+                let value = event.target.value
+                event.target.value = value.replace(/[^\d.]/g,'')
+                setNote(event.target.value)
+            }} style={{textAlign:'center'}} ></input>
 
 
             <select onChange={(e:any)=>setTwo_months(e.target.value)}>
