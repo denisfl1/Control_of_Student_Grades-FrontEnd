@@ -33,7 +33,7 @@ export default function AddNotePage(){
             <div className="background"></div>
             <div style={{display:'flex'}}>
        
-            <AddNoteComp  data={data}/>
+            <AddNoteComp  data={data} setData={setData}/>
             </div>
 
         </div>

@@ -4,12 +4,12 @@
 import { useEffect, useState } from "react"
 import {API} from "@/api/api"
 
-export default function AddNoteComp(props:{data:any}){
+export default function AddNoteComp(props:{data:any,setData:React.Dispatch<React.SetStateAction<string[]>>}){
 
     const [name,setName] = useState<any>([])
-    const [Actual_Note,setActual_Note] = useState<number|string[]>([])
+    const [Actual_Note,setActual_Note] = useState<string|number>()
     const [ra,setStudent_RA] = useState<string[]>([])
-    const [note,setNote] = useState<number>()
+    const [note,setNote] = useState<number|null>()
     const [two_months,setTwo_months] = useState<string>('1')
  
 
@@ -31,9 +31,9 @@ export default function AddNoteComp(props:{data:any}){
             data_note = props.data['alumn'].notes[two_months][discipline]
 
             if(data_note == null){
-                setActual_Note([''])
+                setActual_Note("Aguardando Nota")
             }else{
-                setActual_Note([data_note])
+                setActual_Note(data_note)
             }
            
         }
@@ -48,18 +48,36 @@ export default function AddNoteComp(props:{data:any}){
 
 
     const sendData = async()=>{
-      
 
        await API.post('/addnote',{ra,note,two_months}).then(
             res=>{
-              
-                if(res.status == 200)return note && setActual_Note(note)
+                
+                if(res.status == 200){
+                 props.setData((prevState:any)=>{
+                    return {
+                        ...prevState,
+                        alumn:{...prevState.alumn,
+                        notes:{...prevState.alumn.notes[two_months],
+                        [two_months]:{...prevState.alumn.notes[two_months],
+                        [prevState.discipline]:note}}}
+                      
+                        }
+                 })
+
+                }
+                   
             },error=>{
                 console.log(error)
             }
         )
 
 
+    }
+
+    const handleClear = ()=>{
+
+        setNote(null)
+        setActual_Note('Aguardando Nota')
     }
 
 
@@ -76,7 +94,7 @@ return(
             <input disabled value={ra}></input>
             
             <label>Nota Atual</label>
-            <input value={Actual_Note} disabled style={{backgroundColor:"white",textAlign:'center'}}></input>
+            <input value={Actual_Note} disabled style={{backgroundColor:"white",textAlign:'center',fontSize:Actual_Note == "Aguardando Nota" ? '18px': ''}}></input>
      
 
             <label>Digite uma Nota</label>
@@ -95,7 +113,7 @@ return(
 
 
             <div style={{display:'flex',marginTop:'20px'}}>
-               <button className="clearButton">LIMPAR</button>
+               <button onClick={handleClear} className="clearButton">LIMPAR</button>
                <button onClick={sendData} className="saveButton">SALVAR</button>
             </div>
 
