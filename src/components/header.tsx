@@ -1,13 +1,15 @@
 
 "use client"
 
-import { useAppContext } from "@/context"
+import { AppContext } from "@/context/index"
 import home from "@/imgs/home.png"
 import Link from "next/link"
+import { useContext } from "react"
 
 
 export default function Header(){
-    const {Logout} = useAppContext()
+    
+    const {Logout} = useContext(AppContext)
 
     
 

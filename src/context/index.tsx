@@ -7,28 +7,25 @@ interface ContextTypes{
 Logged?:(data:any)=>void;
 Logout?:()=>void;
 setUser?:any;
-Authenticated:boolean;
+Authenticated?:boolean;
 token?:string|null;
+children:React.ReactNode
     
 }
 
-const AppContext = createContext<ContextTypes>(
-    {}as ContextTypes
-)
+export const AppContext = createContext<ContextTypes>(
+    
+    {} as ContextTypes)
 
 
 
-export function AppWrapper({children} : {
-
-    children:React.ReactNode
-
-}){
+export const AppWrapper:React.FC<ContextTypes> =({children})=>{
     let [user,setUser] = useState<any>(null)
-    const token :string|null = localStorage.getItem('token')
-    const TEATCHER = localStorage.getItem('teatcher')
+    let token = "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidGVhdGNoZXJOYW1lIjoiRGVuaXMgVGVhdGNoZXIiLCJjcmVkZW50aWFsIjoiMTIzNDUyMyJ9.OHLO5s02hjTCBoodndHjwLDqnniukpItzt3ZnMYpFpU"
 
     useEffect(()=>{
-
+        const TEATCHER = localStorage.getItem('teatcher')   
+       
     if(TEATCHER){
         let data = JSON.parse(TEATCHER)
         setUser(data)
@@ -40,18 +37,16 @@ export function AppWrapper({children} : {
 
     API.defaults.headers.Authorization = token
 
-
     const Logged=(data:any)=>{
 
         setUser(data.teatcher)
 
         const data_to_save = ['token','teatcher']
-        const save=()=>{
+
             return data_to_save.forEach((items:string)=>{
                 localStorage.setItem(`${items}`,JSON.stringify(data[`${items}`]))
             })
-        }
-        save()
+     
 
 
 
@@ -61,22 +56,21 @@ export function AppWrapper({children} : {
     const Logout=()=>{
 
        const data_to_remove = ['token','teatcher']
-       const remove=()=>{
+     
         return  data_to_remove.forEach((items:string)=>{
                localStorage.removeItem(items)
             })
-       }
-       remove()
+     
      
     }
 
 
     return(
 
-        <AppContext.Provider value={{Authenticated:!!user, Logged,Logout,setUser,token}}>
+        <AppContext.Provider value={{Authenticated:!!user, Logged,Logout,setUser,children}}>
             {children}
         </AppContext.Provider>
     )
 
 }
-export const useAppContext = ()=>useContext(AppContext)
+// export const useAppContext = ()=>useContext(AppContext)

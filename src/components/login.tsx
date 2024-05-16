@@ -2,15 +2,15 @@
 
 import background from "@/imgs/classroom.jpg"
 import school from "@/imgs/school.png"
-import { useState } from "react"
+import { useContext, useState } from "react"
 import {API} from "@/api/api"
-import { useAppContext } from "@/context"
+import { AppContext } from "@/context"
 
 export default function login(){
 
     const[credential,setCredential]= useState<string>()
     const[password,setPassword]= useState<string>()
-    const{Logged}=useAppContext()
+    const{Logged}= useContext(AppContext)
 
 
     const HandleLogin = async(e:React.MouseEvent<HTMLButtonElement>)=>{

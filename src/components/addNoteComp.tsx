@@ -2,39 +2,59 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import {API} from "@/api/api"
 
-interface DataType{
-    data:{
-        name:string
-    }
-    
-}
+export default function AddNoteComp(props:{data:any}){
 
-    
-        
-    
-
-
-
-export default function AddNoteComp(props:{data:DataType}){
-
-
-
-
-    const [name,setName] = useState<string[]>([])
-    const [Actual_Note,setActual_Note] = useState<number|string[]>(['8,5'])
-    const [Student_RA,setStudent_RA] = useState<string[]>(['123456'])
+    const [name,setName] = useState<any>([])
+    const [Actual_Note,setActual_Note] = useState<number|string[]>([])
+    const [ra,setStudent_RA] = useState<string[]>(['123456'])
     const [note,setNote] = useState<Number>()
-    const [two_months,setTwo_months] = useState<string[]>([])
+    const [two_months,setTwo_months] = useState<string>('1')
  
 
     useEffect(()=>{
 
+    const data_name = props.data.name
+    const data_surname = props.data.surname
+    const data_ra = props.data.ra
+    let data_note = ''
+    const fullname = `${data_name} ${data_surname}`
 
-    },[props.data])
+    setName(fullname)
+    setStudent_RA(data_ra)
+
+    for(let i in props.data.notes){
+ 
+        if(i != 'Média'){
+            data_note = props.data.notes[two_months]['português']
+
+            if(data_note == null){
+                setActual_Note([''])
+            }else{
+                setActual_Note([data_note])
+            }
+           
+        }
+    }
 
 
-  
+
+    },[props.data,two_months])
+
+
+    const sendData=()=>{
+      
+        API.post('/addnote',{ra,note,two_months}).then(
+            res=>{
+                console.log(res.data)
+            },error=>{
+                console.log(error)
+            }
+        )
+
+
+    }
 
 
 return(
@@ -47,7 +67,7 @@ return(
             <input value={name}></input>
             
             <label>RA</label>
-            <input value={Student_RA}></input>
+            <input value={ra}></input>
             
             <label>Nota Atual</label>
             <input value={Actual_Note} disabled style={{backgroundColor:"white",textAlign:'center'}}></input>
@@ -67,7 +87,7 @@ return(
 
             <div style={{display:'flex',marginTop:'20px'}}>
                <button className="clearButton">LIMPAR</button>
-               <button className="saveButton">SALVAR</button>
+               <button onClick={sendData} className="saveButton">SALVAR</button>
             </div>
 
         </div>
