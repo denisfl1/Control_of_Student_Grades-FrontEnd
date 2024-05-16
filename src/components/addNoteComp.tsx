@@ -9,7 +9,7 @@ export default function AddNoteComp(props:{data:any}){
     const [name,setName] = useState<any>([])
     const [Actual_Note,setActual_Note] = useState<number|string[]>([])
     const [ra,setStudent_RA] = useState<string[]>(['123456'])
-    const [note,setNote] = useState<Number>()
+    const [note,setNote] = useState<number>()
     const [two_months,setTwo_months] = useState<string>('1')
  
 
@@ -43,11 +43,19 @@ export default function AddNoteComp(props:{data:any}){
     },[props.data,two_months])
 
 
+
     const sendData=()=>{
       
+            console.log(note)
+            alert(typeof note)
+
+        
+        
+
         API.post('/addnote',{ra,note,two_months}).then(
             res=>{
                 console.log(res.data)
+                if(res.status == 200)return note && setActual_Note(note)
             },error=>{
                 console.log(error)
             }
@@ -74,7 +82,10 @@ return(
      
 
             <label>Digite uma Nota</label>
-            <input onChange={(e:any)=>setNote(e.target.value)} style={{textAlign:'center'}} type="text"></input>
+            <input onChange={(event)=>{
+                 const value = Number(event.target.value)
+                 setNote(value)
+            }} style={{textAlign:'center'}} type="text"></input>
 
 
             <select onChange={(e:any)=>setTwo_months(e.target.value)}>
