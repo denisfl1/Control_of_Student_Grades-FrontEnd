@@ -12,9 +12,8 @@ export default function AddNotePage(){
 
     useEffect(()=>{
 
-        API.get(`/getStudent/${123456}`).then(
+        API.get("/getStudentToNote/123456").then(
             res=>{
-               
                 setData(res.data)
             },error=>{
                 console.log(error)
@@ -33,10 +32,7 @@ export default function AddNotePage(){
             <img className="loginIMG " style={{zIndex:-1,minHeight:"100vh"}} src={background.src}></img>
             <div className="background"></div>
             <div style={{display:'flex'}}>
-
-         
-
-          
+       
             <AddNoteComp  data={data}/>
             </div>
 

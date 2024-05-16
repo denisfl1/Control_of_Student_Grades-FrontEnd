@@ -8,26 +8,27 @@ export default function AddNoteComp(props:{data:any}){
 
     const [name,setName] = useState<any>([])
     const [Actual_Note,setActual_Note] = useState<number|string[]>([])
-    const [ra,setStudent_RA] = useState<string[]>(['123456'])
+    const [ra,setStudent_RA] = useState<string[]>([])
     const [note,setNote] = useState<number>()
     const [two_months,setTwo_months] = useState<string>('1')
  
 
     useEffect(()=>{
 
-    const data_name = props.data.name
-    const data_surname = props.data.surname
-    const data_ra = props.data.ra
-    let data_note = ''
-    const fullname = `${data_name} ${data_surname}`
-
-    setName(fullname)
-    setStudent_RA(data_ra)
-
-    for(let i in props.data.notes){
+        let data_name = ''
+        let data_surname = ''
+        let data_ra = ''
+        let discipline = ''
+        let data_note = ''
+   
+    for(let i in props.data){
+        data_name = props.data['alumn']['name']
+        data_surname = props.data['alumn']['surname']
+        data_ra = props.data['alumn']['ra']
+        discipline = props.data['discipline']
  
-        if(i != 'Média'){
-            data_note = props.data.notes[two_months]['português']
+        if(props.data['alumn']['ra'] != 'Média'){
+            data_note = props.data['alumn'].notes[two_months][discipline]
 
             if(data_note == null){
                 setActual_Note([''])
@@ -37,19 +38,21 @@ export default function AddNoteComp(props:{data:any}){
            
         }
     }
-
+    const fullname = `${data_name} ${data_surname}`
+    setName(fullname)
+    setStudent_RA([data_ra])
 
 
     },[props.data,two_months])
 
 
 
-    const sendData=()=>{
+    const sendData = async()=>{
       
 
-        API.post('/addnote',{ra,note,two_months}).then(
+       await API.post('/addnote',{ra,note,two_months}).then(
             res=>{
-                console.log(res.data)
+              
                 if(res.status == 200)return note && setActual_Note(note)
             },error=>{
                 console.log(error)
@@ -67,10 +70,10 @@ return(
         <div className="addNoteContent">
 
             <label>Nome</label>
-            <input value={name}></input>
+            <input disabled value={name}></input>
             
             <label>RA</label>
-            <input value={ra}></input>
+            <input disabled value={ra}></input>
             
             <label>Nota Atual</label>
             <input value={Actual_Note} disabled style={{backgroundColor:"white",textAlign:'center'}}></input>
