@@ -64,7 +64,6 @@ export default function studentNotes ({params}:IdParams){
 
     return(
     <div className="tableAllNotesContainer">
-          
         <div className="studentInfoContainer" style={{height:'150px',backgroundColor:"#F3F4F6"}}>
              
 
@@ -73,24 +72,25 @@ export default function studentNotes ({params}:IdParams){
           <div style={{display:'flex',alignItems:"center",fontWeight:"bold",fontSize:'35px'}}><h1 >RA:</h1><h1 style={{fontWeight:"normal"}}>{students.ra}</h1></div> 
         </div>
 
-        <div className="legContainer">
-            <div className="flex flex-wrap">
-                <div className="Leg aproved"></div>
-                <p>Aprovado</p>
-            </div>
-            
-            <div className="flex flex-wrap mt-1">
-                <div className="Leg reproved"></div>
-                <p>Reprovado</p>
-            </div>
+                <div className="legContainer">
+                    <div className="flex flex-wrap">
+                        <div className="Leg aproved"></div>
+                        <p>Aprovado</p>
+                    </div>
+                    
+                    <div className="flex flex-wrap mt-1">
+                        <div className="Leg reproved"></div>
+                        <p>Reprovado</p>
+                    </div>
+
+                </div>
 
         </div>
-
-        </div>
-
-        <div className="tableAllNotesSubContainer">
         <img style={{zIndex:-1,position:'absolute',width:"100%",maxHeight:"100%"}} src={background.src}></img>
         <div className="background"></div>
+        <div className="tableAllNotesSubContainer">
+       
+     
         <table className="tableAllNotes  w-full">
        
             <thead>

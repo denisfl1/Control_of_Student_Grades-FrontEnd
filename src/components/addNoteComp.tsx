@@ -28,13 +28,15 @@ export default function AddNoteComp(props:{data:any,setData:React.Dispatch<React
         data_ra = data['alumn']['ra']
         discipline = data['discipline']
  
-        if(data['alumn']['ra'] != 'Média'){
+     
+
+        if(two_months != 'Média'){
             data_note = data['alumn'].notes[two_months][discipline]
 
-            if(data_note == null){
-                setActual_Note("Aguardando Nota")
+            if(data_note == '' || data_note == null){
+               setActual_Note("Aguardando Nota...")
             }else{
-                setActual_Note(data_note)
+               setActual_Note(data_note)
             }
            
         }
@@ -50,10 +52,12 @@ export default function AddNoteComp(props:{data:any,setData:React.Dispatch<React
 
     const sendData = async()=>{
         
+        
+        let convert = note == '' ? null : Number(note)
 
-       await API.post('/addnote',{ra,note,two_months}).then(
+       await API.post('/addnote',{ra,convert,two_months}).then(
             res=>{
-                
+          
                 if(res.status == 200){
                  props.setData((prevState:any)=>{
                     return {
@@ -78,9 +82,9 @@ export default function AddNoteComp(props:{data:any,setData:React.Dispatch<React
     }
 
     const handleClear = ()=>{
-
-        setNote(null)
-        setActual_Note("Aguardando Nota")
+        
+        setNote('')
+        setActual_Note("Aguardando Nota...")
     }
 
 
@@ -97,7 +101,7 @@ return(
             <input disabled value={ra}></input>
             
             <label>Nota Atual</label>
-            <input value={Actual_Note} disabled style={{backgroundColor:"white",textAlign:'center',fontSize:Actual_Note == "Aguardando Nota" ? '18px': ''}}></input>
+            <input value={Actual_Note} disabled style={{backgroundColor:"white",textAlign:'center',fontSize:Actual_Note == "Aguardando Nota..." ? '18px': ''}}></input>
      
 
             <label>Digite uma Nota</label>

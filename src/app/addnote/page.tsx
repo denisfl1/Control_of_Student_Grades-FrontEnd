@@ -1,10 +1,12 @@
 "use client"
 
 import AddNoteComp from "@/components/addNoteComp"
+import SelectStudentTable from "@/components/selectStudentTable"
 import Header from "@/components/header"
 import background from "@/imgs/classroom.jpg"
 import { useEffect, useState } from "react"
 import {API} from "@/api/api"
+
 
 export default function AddNotePage(){
 
@@ -32,7 +34,7 @@ export default function AddNotePage(){
             <img className="loginIMG " style={{zIndex:-1,minHeight:"100vh"}} src={background.src}></img>
             <div className="background"></div>
             <div style={{display:'flex'}}>
-       
+            <SelectStudentTable data={data}></SelectStudentTable>
             <AddNoteComp  data={data} setData={setData}/>
             </div>
 
