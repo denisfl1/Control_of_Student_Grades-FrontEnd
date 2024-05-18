@@ -8,24 +8,12 @@ import { useEffect, useState } from "react"
 import {API} from "@/api/api"
 
 
-export default function AddNotePage(){
+export default function AddNotePage(props:{data:any}){
 
     const [data,setData] = useState<any>([])
+    const [ra,setRA]=  useState<any>(123456)
 
-    useEffect(()=>{
-
-        API.get("/getStudentToNote/123456").then(
-            res=>{
-                setData(res.data)
-            },error=>{
-                console.log(error)
-            }
-        )
-
-
-
-    },[])
-
+  
 
     return(
 
@@ -34,7 +22,7 @@ export default function AddNotePage(){
             <img className="loginIMG " style={{zIndex:-1,minHeight:"100vh"}} src={background.src}></img>
             <div className="background"></div>
             <div style={{display:'flex'}}>
-            <SelectStudentTable data={data}></SelectStudentTable>
+            <SelectStudentTable setData={setData} setRA={setRA}></SelectStudentTable>
             <AddNoteComp  data={data} setData={setData}/>
             </div>
 

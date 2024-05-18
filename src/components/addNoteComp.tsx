@@ -14,14 +14,14 @@ export default function AddNoteComp(props:{data:any,setData:React.Dispatch<React
     
 
     useEffect(()=>{
-
+        
         let data_name = ''
         let data_surname = ''
         let data_ra = ''
         let discipline = ''
         let data_note = ''
         const data = props.data
-   
+        console.log(data)
     for(let i in data){
         data_name = data['alumn']['name']
         data_surname = data['alumn']['surname']
