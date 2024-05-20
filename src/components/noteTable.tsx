@@ -6,9 +6,10 @@ export default function NoteTable(){
 
     const subjects = [
 
-        'Segundo Bimestre',
-        'Terceiro Bimestre',
-        'Quarto Bimestre',
+        'Segundo',
+        'Terceiro',
+        'Quarto',
+        'Média'
 
     ]
 
@@ -22,8 +23,13 @@ return(
             <thead>
                 <tr>
                     <th>
-                Bimestres
+                        Bimestre
                     </th>
+
+                    <th>
+                        Nota
+                    </th>
+
                 </tr>
             </thead>
 
@@ -33,7 +39,7 @@ return(
                     return(
                         <tr>
                               <td>{it}</td>
-                              <td>{1}</td>
+                              <td style={{textAlign:'center',width:"100px"}}>{'1'}</td>
                         </tr>
                     )
 
@@ -43,7 +49,7 @@ return(
 
             </tbody>
 
-
+            <div></div>
         </table>
 
 
