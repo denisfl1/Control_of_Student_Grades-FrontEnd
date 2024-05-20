@@ -6,6 +6,7 @@ import Header from "@/components/header"
 import background from "@/imgs/classroom.jpg"
 import { useEffect, useState } from "react"
 import {API} from "@/api/api"
+import NoteTable from "@/components/noteTable"
 
 
 export default function AddNotePage(props:{data:any}){
@@ -24,6 +25,7 @@ export default function AddNotePage(props:{data:any}){
             <div style={{display:'flex'}}>
             <SelectStudentTable setData={setData} setRA={setRA}></SelectStudentTable>
             <AddNoteComp  data={data} setData={setData}/>
+            <NoteTable></NoteTable>
             </div>
 
         </div>
