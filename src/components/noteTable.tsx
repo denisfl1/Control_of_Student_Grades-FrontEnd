@@ -1,17 +1,4 @@
-import { useEffect, useState } from "react"
-
 export default function NoteTable(props:{data:any}){
-
-
-
-    const [studentDATA,setStudentDATA] = useState<any>()
-
-    let disc:any =  ''
-    let first:any =  ''
-    let second:any =  ''
-    let third:any =  ''
-    let fourth:any = ''
-    let total:any = ''
 
     const subjects = [
         'Primeiro',
@@ -24,14 +11,14 @@ export default function NoteTable(props:{data:any}){
 
 
     const verify = props.data
-    disc = verify ? props.data.discipline : ''
-    first = verify ? props.data.notes['1'][disc] : ''
-    second = verify ?props.data.notes['2'][disc] : ''
-    third = verify ? props.data.notes['3'][disc] : ''
-    fourth = verify ? props.data.notes['4'][disc] : ''
-    total = Math.round((first + second + third + fourth) / 4)
+    const disc = verify && props.data.discipline
+    const first = verify && parseFloat(props.data.notes['1'][disc]) 
+    const second = verify && parseFloat(props.data.notes['2'][disc]) 
+    const third = verify && parseFloat(props.data.notes['3'][disc]) 
+    const fourth = verify && parseFloat(props.data.notes['4'][disc]) 
+    const total = verify && Math.round((first + second + third + fourth) / 4) 
     const all = [first,second,third,fourth,total]
-
+  
 
 return(
 
@@ -53,18 +40,15 @@ return(
             </thead>
 
             <tbody>
-                {subjects.map((it:any,index:number)=>{
-                      
-                           
+                {subjects.map((it:string,index:number)=>{
+                                              
                     return(
-
                         <>
                         <tr>
                             <td>{it}</td>                       
                             <td>{all[index]}</td>                      
                         </tr>
-                        </>
-                   
+                        </>                 
                     )
 
                 })}

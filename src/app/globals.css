@@ -293,7 +293,6 @@ font-weight: bold;
   width: 500px;
   height: 600px;
   background-color:rgb(246, 246, 246);
-  border:1px solid black;
   border-radius: 5px;
   display: flex;
   align-items: center;
@@ -354,6 +353,15 @@ font-weight: bold;
 
 .tableNotes_toAdd{
   width: 400px;
-  font-size: 20px;
+  line-height: 40px;
   font-weight: bold;
+  border-radius: 10px;
+  margin-left: 80px;
+  margin-top: 80px;
+}
+
+
+
+.tableNotes_toAdd th{
+font-size: 30px;
 }

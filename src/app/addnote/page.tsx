@@ -18,7 +18,9 @@ export default function AddNotePage(props:{data:any}){
 
     return(
 
-        <div className="addNotePageContainer">
+        <div className="addNotePageContainer" style={{
+            minHeight:'100%'
+        }}>
             <Header></Header>
             <img className="loginIMG " style={{zIndex:-1,minHeight:"100vh"}} src={background.src}></img>
             <div className="background"></div>

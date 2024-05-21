@@ -6,7 +6,7 @@ export default function SelectStudentTable(props:{setData:React.Dispatch<React.S
     setRA:React.Dispatch<React.SetStateAction<string>>}){
 
         const[allStudents,setAllStudents] = useState<string[]>()
-        const [DiscDiscipline,setDiscDiscipline] = useState()
+        const [DiscDiscipline,setDiscDiscipline] = useState<string>()
 
         useEffect(()=>{
 
