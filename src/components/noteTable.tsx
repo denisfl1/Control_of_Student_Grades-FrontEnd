@@ -1,11 +1,28 @@
+import { useEffect, useState } from "react"
+
+export default function NoteTable(props:{data:any}){
 
 
 
+    const [studentDATA,setStudentDATA] = useState<any>()
 
-export default function NoteTable(){
+    // const [verify,setVerify] = useState()
+    // const [disc,setDisc ]= useState()
+    // const [first,setFirst]= useState()
+    // const [second,setSecond]= useState()
+    // const [third,setThird] = useState()
+    // const [fourth,setFourth] = useState()
+    // const [total,setTotal] = useState()
+
+    let disc =  ' '
+    let first:any =  ''
+    let second:any =  ''
+    let third:any =  ''
+    let fourth:any = ''
+    let total:any = null
 
     const subjects = [
-
+        'Primeiro',
         'Segundo',
         'Terceiro',
         'Quarto',
@@ -14,11 +31,21 @@ export default function NoteTable(){
     ]
 
 
+    useEffect(()=>{
+        
+  
+
+    },[props.data])
+
+
+
+
+
 return(
 
     <div>
         
-        <table>
+        <table className="tableNotes_toAdd ">
 
             <thead>
                 <tr>
@@ -35,21 +62,38 @@ return(
 
             <tbody>
                 {subjects.map((it:any)=>{
-
+                          const verify = props.data
+                          console.log(verify)
+                           disc = verify ? props.data.discipline : ' '
+                           first = verify ? props.data.notes['1'][disc] : ''
+                           second = verify ?props.data.notes['2'][disc] : ''
+                           third = verify ? props.data.notes['3'][disc] : ''
+                           fourth = verify ? props.data.notes['4'][disc] : ''
+                           total = verify ? Math.round((first + second + third + fourth) / 4) : ''
+                  
+      
+        
+    
+                
                     return(
+
+                        <>
                         <tr>
-                              <td>{it}</td>
-                              <td style={{textAlign:'center',width:"100px"}}>{'1'}</td>
+                            <td>{it}</td>                       
+                            <td>{first}</td>
+                            <td>{second}</td>
                         </tr>
+                        </>
+                   
                     )
 
                 })}
          
-
+                
 
             </tbody>
 
-            <div></div>
+          
         </table>
 
 

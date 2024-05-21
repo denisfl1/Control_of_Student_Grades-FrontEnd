@@ -11,8 +11,8 @@ import NoteTable from "@/components/noteTable"
 
 export default function AddNotePage(props:{data:any}){
 
-    const [data,setData] = useState<any>([])
-    const [ra,setRA]=  useState<any>(123456)
+    const [data,setData] = useState<any>()
+    const [ra,setRA]=  useState<any>()
 
   
 
@@ -25,7 +25,7 @@ export default function AddNotePage(props:{data:any}){
             <div style={{display:'flex'}}>
             <SelectStudentTable setData={setData} setRA={setRA}></SelectStudentTable>
             <AddNoteComp  data={data} setData={setData}/>
-            <NoteTable></NoteTable>
+            <NoteTable data={data}></NoteTable>
             </div>
 
         </div>

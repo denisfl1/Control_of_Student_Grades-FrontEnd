@@ -54,7 +54,6 @@ return(
                     <td>{it.ra}</td>
                     <td><button onClick={()=>props.setData(
                        { ...it,
-                        alumn:it,
                         discipline:DiscDiscipline
                        }
                         

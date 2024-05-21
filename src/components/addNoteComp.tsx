@@ -21,17 +21,17 @@ export default function AddNoteComp(props:{data:any,setData:React.Dispatch<React
         let discipline = ''
         let data_note = ''
         const data = props.data
-        console.log(data)
+     
     for(let i in data){
-        data_name = data['alumn']['name']
-        data_surname = data['alumn']['surname']
-        data_ra = data['alumn']['ra']
+        data_name = data['name']
+        data_surname = data['surname']
+        data_ra = data['ra']
         discipline = data['discipline']
  
      
 
         if(two_months != 'Média'){
-            data_note = data['alumn'].notes[two_months][discipline]
+            data_note = data.notes[two_months][discipline]
 
             if(data_note == '' || data_note == null){
                setActual_Note("Aguardando Nota...")
@@ -62,13 +62,13 @@ export default function AddNoteComp(props:{data:any,setData:React.Dispatch<React
                  props.setData((prevState:any)=>{
                     return {
                         ...prevState,
-                        alumn:{...prevState.alumn,
-                        notes:{...prevState.alumn.notes,
-                        [two_months]:{...prevState.alumn.notes[two_months],
-                        [prevState.discipline]:note}}}
+                        notes:{...prevState.notes,
+                        [two_months]:{...prevState.notes[two_months],
+                        [prevState.discipline]:note}}
                       
                         }
                  })
+            
                   alert(res.data)
                 }
                    
