@@ -61,27 +61,23 @@ return(
             </thead>
 
             <tbody>
-                {subjects.map((it:any)=>{
+                {subjects.map((it:any,index:number)=>{
                           const verify = props.data
-                          console.log(verify)
                            disc = verify ? props.data.discipline : ' '
                            first = verify ? props.data.notes['1'][disc] : ''
                            second = verify ?props.data.notes['2'][disc] : ''
                            third = verify ? props.data.notes['3'][disc] : ''
                            fourth = verify ? props.data.notes['4'][disc] : ''
                            total = verify ? Math.round((first + second + third + fourth) / 4) : ''
-                  
-      
-        
-    
+                           const all = [first,second,third,fourth,total]
                 
                     return(
 
                         <>
                         <tr>
                             <td>{it}</td>                       
-                            <td>{first}</td>
-                            <td>{second}</td>
+                            <td>{all[index]}</td>
+                          
                         </tr>
                         </>
                    
