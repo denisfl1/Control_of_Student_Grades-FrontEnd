@@ -374,6 +374,12 @@ background-color: #004062;
 }
 
 .SelectStudentContainer::-webkit-scrollbar{
-  background-color: aliceblue;
   width: 10px;
+  background-color: #e5e9f2;
+}
+
+.SelectStudentContainer input{
+  border:none;
+  outline:none;
+  font-size: 20px;
 }

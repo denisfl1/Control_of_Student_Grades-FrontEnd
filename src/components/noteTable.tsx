@@ -46,7 +46,7 @@ return(
                         <>
                         <tr>
                             <td>{it}</td>                       
-                            <td>{all[index]}</td>                      
+                            <td style={{fontSize:'25px'}}>{all[index]}</td>                      
                         </tr>
                         </>                 
                     )
