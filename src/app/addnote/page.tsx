@@ -24,7 +24,7 @@ export default function AddNotePage(props:{data:any}){
             <Header></Header>
             <img className="loginIMG " style={{zIndex:-1,minHeight:"100vh"}} src={background.src}></img>
             <div className="background"></div>
-            <div style={{display:'flex'}}>
+            <div style={{display:'flex',justifyContent:'space-around',marginTop:'20px'}}>
             <SelectStudentTable setData={setData} setRA={setRA}></SelectStudentTable>
             <AddNoteComp  data={data} setData={setData}/>
             <NoteTable data={data}></NoteTable>

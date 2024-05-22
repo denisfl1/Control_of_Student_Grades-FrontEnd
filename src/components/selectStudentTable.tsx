@@ -27,8 +27,8 @@ export default function SelectStudentTable(props:{setData:React.Dispatch<React.S
 
 return(
 
-    <div>
-       <div><input style={{width:"100%"}}></input></div> 
+    <div className="SelectStudentContainer overflow-x-auto overflow-y-scroll" style={{height:'700px'}}>
+       <div className="flex"><input style={{width:"100%",height:'40px',paddingLeft:'10px'}}></input><button style={{backgroundColor:'rgb(0, 64, 98',color:'white',width:'150px',borderRight:'1px solid white'}}>Pesquisar</button></div> 
     <table style={{
         width:"480px"
     }}>
