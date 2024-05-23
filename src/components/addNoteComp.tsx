@@ -83,8 +83,11 @@ export default function AddNoteComp(props:{data:any,setData:React.Dispatch<React
 
     const handleClear = ()=>{
         
+        const question = window.confirm('Remover Nota?')
+        if(question){
         setNote('')
-        setActual_Note("Aguardando Nota...")
+        setActual_Note('')
+        }
     }
 
 

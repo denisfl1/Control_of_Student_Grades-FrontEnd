@@ -20,9 +20,9 @@ export default function NoteTable(props:{data:any}){
     const all = [first,second,third,fourth,total]
   
     const notesColor=(val:any)=>{
-    
+        
         if(Math.round(val) > 6 ) return "#87CEFA"
-        if(val == null || val == ' - ') return "alicieblue"
+        if(val == null || val == ' - ' || Number.isNaN(val)) return "#F0F8FF"
         return "#FA8072"
 
     }
@@ -39,7 +39,7 @@ return(
                         Bimestre
                     </th>
 
-                    <th  className="text-center">
+                    <th className="text-center">
                         Nota
                     </th>
 
@@ -48,12 +48,12 @@ return(
 
             <tbody>
                 {subjects.map((it:string,index:number)=>{
-                                              
+                                      
                     return(
                         <>
                         <tr>
                             <td>{it}</td>                       
-                            <td className="text-center" style={{fontSize:'25px',backgroundColor:notesColor(all[index])}}>{all[index]}</td>                      
+                            <td className="text-center" style={{fontSize:'25px',backgroundColor:notesColor(all[index])}}>{Number.isNaN(all[index]) ? ' - ' : all[index]}</td>                      
                         </tr>
                         </>                 
                     )
