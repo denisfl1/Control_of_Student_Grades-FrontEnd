@@ -19,6 +19,13 @@ export default function NoteTable(props:{data:any}){
     const total = verify && Math.round((first + second + third + fourth) / 4) 
     const all = [first,second,third,fourth,total]
   
+    const notesColor=(val:any)=>{
+    
+        if(Math.round(val) > 6 ) return "#87CEFA"
+        if(val == null || val == ' - ') return "alicieblue"
+        return "#FA8072"
+
+    }
 
 return(
 
@@ -32,7 +39,7 @@ return(
                         Bimestre
                     </th>
 
-                    <th>
+                    <th  className="text-center">
                         Nota
                     </th>
 
@@ -46,7 +53,7 @@ return(
                         <>
                         <tr>
                             <td>{it}</td>                       
-                            <td style={{fontSize:'25px'}}>{all[index]}</td>                      
+                            <td className="text-center" style={{fontSize:'25px',backgroundColor:notesColor(all[index])}}>{all[index]}</td>                      
                         </tr>
                         </>                 
                     )
