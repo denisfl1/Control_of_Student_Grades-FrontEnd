@@ -125,37 +125,27 @@ export default function studentsList(){
 
             }
   
-            sum = Math.round((sum)/13)
+            sum = Math.round(sum)/13
      
      
-            if(sum >= 7){
-               
-            aproved.push(it)
-              
-            }
-            
-            if(sum <= 6 && !void_note){
-            reproved.push(it)
-            }
-            
-            if(void_note){
-            waiting.push(it)
-            }
-       
+            if(sum >= 7)return aproved.push(it)
+            if(sum < 7 && !void_note) return  reproved.push(it)  
+            if(void_note) return  waiting.push(it)
+      
         })
         
         if(target == "aprovado"){
 
-          return  setAverage(aproved)
+           setAverage(aproved)
 
         }
         else if(target == "reprovado"){
 
-          return  setAverage(reproved)
+           setAverage(reproved)
 
         }else if(target == "aguardando"){
 
-          return  setAverage(waiting)
+           setAverage(waiting)
 
         }else{
             setAverage([])
@@ -174,12 +164,12 @@ export default function studentsList(){
             <div className="studentsListContainer w-full mt-5" >
                 <div className="flex h-20 w-9/12 m-auto bg-opacity-80 bg-white t-0 justify-around items-center" style={{borderTopLeftRadius:'10px',borderTopRightRadius:'10px'}}>
                 <div className="containerInput"><input onChange={(e:any)=>setSearch(e.target.value)} placeholder="Nome ou RA" className="w-full" type="text"></input><img src={lupa.src}></img></div>
-                <select className="select_situation" onChange={(e:any)=>selectFilterNote(students,e.target.value)}>
+                <select id="select_situations" onChange={(e:any)=>selectFilterNote(students,e.target.value)}>
         
                   <option>Todos</option>     
-                  <option value={'aprovado'}>Aprovado</option>
-                  <option value={'reprovado'}>Reprovado</option>
-                  <option value={'aguardando'}>Aguardando</option>
+                  <option value={"aprovado"}>Aprovado</option>
+                  <option value={"reprovado"}>Reprovado</option>
+                  <option value={"aguardando"}>Aguardando</option>
            
                 </select>
                 </div>

@@ -53,7 +53,7 @@ return(
                         <>
                         <tr>
                             <td>{it}</td>                       
-                            <td className="text-center" style={{fontSize:'25px',backgroundColor:notesColor(all[index])}}>{Number.isNaN(all[index]) && ' - ' }</td>                      
+                            <td className="text-center" style={{fontSize:'25px',backgroundColor:notesColor(all[index])}}>{Number.isNaN(all[index])? ' - '  : all[index]}</td>                      
                         </tr>
                         </>                 
                     )

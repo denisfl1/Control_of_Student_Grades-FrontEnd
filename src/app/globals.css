@@ -314,7 +314,7 @@ font-weight: bold;
   font-size:40px
 }
 
-.addNoteContent input,select{
+.addNoteContent input{
   width: 100%;
   height: 40px;
  
@@ -323,6 +323,8 @@ font-weight: bold;
 .addNoteContent select{
   margin-top: 10px;
   font-size: 20px;;
+  width: 100%;
+  height: 40px;
 }
 
 
@@ -382,4 +384,10 @@ background-color: #004062;
   border:none;
   outline:none;
   font-size: 20px;
+}
+#select_situations{
+  width: 200px;
+  height: 40px;
+  border: 1px solid black;
+  font-size: 22px;
 }
