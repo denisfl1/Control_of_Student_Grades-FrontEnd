@@ -129,7 +129,7 @@ export default function studentsList(){
      
      
             if(sum >= 7)return aproved.push(it)
-            if(sum < 7 && !void_note) return  reproved.push(it)  
+            if(sum < 7 && !void_note) return reproved.push(it)  
             if(void_note) return  waiting.push(it)
       
         })
