@@ -17,24 +17,26 @@ export default function studentsList(){
     const [search,setSearch] = useState<string[]>([])
     const filterNote = search[0] ? students.filter((data:any)=>key.find(keys=>data[keys].toLowerCase().includes(search) || data[keys].includes(search))) : average && typeof average[0] != 'undefined' ? average : students
 
+    const keys = ['português',
+    'literatura',
+    'inglês',
+    'matemática',
+    'física',
+    'química',
+    'biologia',
+    'geografia',
+    'história',
+    'sociologia',
+    'filosofia',
+    'artes',
+    'educação_física']
+
     const notes=(type:string,student:any)=>{
     
         let sum = 0
         let awaiting = false
     
-        let keys = ['português',
-            'literatura',
-            'inglês',
-            'matemática',
-            'física',
-            'química',
-            'biologia',
-            'geografia',
-            'história',
-            'sociologia',
-            'filosofia',
-            'artes',
-            'educação_física']
+   
         for(let i in student['notes']){
      
         if(i != 'Média'){
@@ -89,19 +91,6 @@ export default function studentsList(){
         let aproved:string[]= []
         let reproved:string[]= []
         let waiting:string[] = []
-        let keys = ['português',
-            'literatura',
-            'inglês',
-            'matemática',
-            'física',
-            'química',
-            'biologia',
-            'geografia',
-            'história',
-            'sociologia',
-            'filosofia',
-            'artes',
-            'educação_física']
 
         data.map((it:any)=>{
         let sum:number = 0
@@ -192,23 +181,7 @@ export default function studentsList(){
             <tbody>
                
             {filterNote.map((student: any,index:number) => {
-            const mat =  [
 
-            'Português',
-            'Literatura',
-            'Inglês',
-            'Matemática',
-            'Física',
-            'Química',
-            'Biologia',
-            'Geografia',
-            'História',
-            'Sociologia',
-            'Filosofia',
-            'Artes',
-            'Educação Física'
-
-            ]
             
             return (
                 
