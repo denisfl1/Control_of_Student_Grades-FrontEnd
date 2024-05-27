@@ -21,10 +21,11 @@ export const AppContext = createContext<ContextTypes>(
 
 export const AppWrapper:React.FC<ContextTypes> =({children})=>{
     let [user,setUser] = useState<any>(null)
-    let token = "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidGVhdGNoZXJOYW1lIjoiRGVuaXMgVGVhdGNoZXIiLCJjcmVkZW50aWFsIjoiMTIzNDUyMyJ9.OHLO5s02hjTCBoodndHjwLDqnniukpItzt3ZnMYpFpU"
+    const token = window.localStorage.getItem('token')
 
     useEffect(()=>{
-        const TEATCHER = localStorage.getItem('teatcher')   
+        const TEATCHER = window.localStorage.getItem('teatcher')   
+       
        
     if(TEATCHER){
         let data = JSON.parse(TEATCHER)
@@ -44,7 +45,7 @@ export const AppWrapper:React.FC<ContextTypes> =({children})=>{
         const data_to_save = ['token','teatcher']
 
             return data_to_save.forEach((items:string)=>{
-                localStorage.setItem(`${items}`,JSON.stringify(data[`${items}`]))
+               window.localStorage.setItem(`${items}`,JSON.stringify(data[`${items}`]))
             })
      
 

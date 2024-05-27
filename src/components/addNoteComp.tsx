@@ -73,7 +73,7 @@ export default function AddNoteComp(props:{data:any,setData:React.Dispatch<React
                 }
                    
             },error=>{
-                console.log(error)
+              
                 alert(error.response.data)
             }
         )
