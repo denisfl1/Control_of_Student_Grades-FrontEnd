@@ -74,14 +74,14 @@ export default function studentsList(){
 
    
     useEffect(()=>{
-
+  
         API.get('/getStudents').then(
             res=>{         
                 setStudents(res.data)
                
             }
         )
-
+ 
     },[])
 
 
