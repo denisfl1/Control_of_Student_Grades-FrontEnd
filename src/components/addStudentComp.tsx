@@ -18,6 +18,8 @@ export default function AddStudendComp(){
        await API.post("/createStudent",{name,surname,ra}).then(
             res=>{
                alert(res.data)
+            },error=>{
+                console.log(error.data)
             }
         )
         

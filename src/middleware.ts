@@ -3,26 +3,28 @@
 
 import { NextRequest,NextResponse } from "next/server";
 
-export default function middleware(request:NextRequest){
-    const token = "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidGVhdGNoZXJOYW1lIjoiRGVuaXMgVGVhdGNoZXIiLCJjcmVkZW50aWFsIjoiMTIzNDUyMyJ9.OHLO5s02hjTCBoodndHjwLDqnniukpItzt3ZnMYpFpU"
-    const verify = !!token
-    if(!verify){
-        // if(request.nextUrl.pathname === '/'){
-        //     return NextResponse.next()
-        // }
-        return NextResponse.redirect(
-            new URL('/loginpage',request.url)
-        )
-    }
-    
 
-    // if(request.nextUrl.pathname === '/'){
-    //     return NextResponse.redirect('/')
-    // }
+export default function middleware(request:NextRequest){
+
+    const loginPage = new URL('/loginpage',request.url)
+    const home = new URL('/',request.url)
+    const token = request.cookies.get('token')?.value
+
+    if(!token){
+
+    if(request.nextUrl.pathname === '/loginpage'){
+        return NextResponse.next()
+    }
+
+        return NextResponse.redirect(loginPage)
+    }
+    if(request.nextUrl.pathname === '/loginpage'){
+        return NextResponse.redirect(home)
+    }
 }
     
 export const config ={
 
-    matcher:['/','/']
+    matcher:['/loginpage','/']
         
 }

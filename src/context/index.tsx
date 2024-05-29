@@ -1,7 +1,9 @@
 "use client"
 
 import {createContext, useContext, useEffect, useState} from 'react'
+import  Cookie  from 'js-cookie';
 import {API} from "@/api/api"
+
 
 interface ContextTypes{
 Logged?:(data:any)=>void;
@@ -22,10 +24,11 @@ export const AppContext = createContext<ContextTypes>(
 export const AppWrapper:React.FC<ContextTypes> =({children})=>{
     let [user,setUser] = useState<any>(null)
     const token = window.localStorage.getItem('token')
+    const TEATCHER = localStorage.getItem('teatcher')   
+
 
     useEffect(()=>{
-        const TEATCHER = localStorage.getItem('teatcher')   
-       
+           
     if(TEATCHER){
         let data = JSON.parse(TEATCHER)
         setUser(data)
@@ -41,8 +44,9 @@ export const AppWrapper:React.FC<ContextTypes> =({children})=>{
 
         setUser(data.teatcher)
 
-            window.localStorage.setItem('teatcher',JSON.stringify(data.teatcher))
+            window.localStorage.setItem('teatcher',JSON.stringify(data.teatcher))   
             window.localStorage.setItem('token',data.token)
+            Cookie.set('token',data.token)
 
     }
 
@@ -50,12 +54,14 @@ export const AppWrapper:React.FC<ContextTypes> =({children})=>{
     const Logout=()=>{
 
        const data_to_remove = ['token','teatcher']
-     
+        
+      
         return  data_to_remove.forEach((items:string)=>{
+               Cookie.remove(items[0])
                localStorage.removeItem(items)
             })
      
-     
+      
     }
 
 
