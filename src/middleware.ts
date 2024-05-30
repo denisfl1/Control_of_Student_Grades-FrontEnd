@@ -25,6 +25,6 @@ export default function middleware(request:NextRequest){
     
 export const config ={
 
-    matcher:['/loginpage','/']
+    matcher:['/loginpage','/','/students']
         
 }

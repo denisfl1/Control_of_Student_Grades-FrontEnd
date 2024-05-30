@@ -3,6 +3,7 @@
 import {createContext, useContext, useEffect, useState} from 'react'
 import  Cookie  from 'js-cookie';
 import {API} from "@/api/api"
+import { useRouter } from 'next/navigation';
 
 
 interface ContextTypes{
@@ -25,7 +26,7 @@ export const AppWrapper:React.FC<ContextTypes> =({children})=>{
     let [user,setUser] = useState<any>(null)
     const token = window.localStorage.getItem('token')
     const TEATCHER = localStorage.getItem('teatcher')   
-
+    const router = useRouter()
 
     useEffect(()=>{
            
@@ -47,7 +48,7 @@ export const AppWrapper:React.FC<ContextTypes> =({children})=>{
             window.localStorage.setItem('teatcher',JSON.stringify(data.teatcher))   
             window.localStorage.setItem('token',data.token)
             Cookie.set('token',data.token)
-
+            router.push('/')
     }
 
 
@@ -55,12 +56,13 @@ export const AppWrapper:React.FC<ContextTypes> =({children})=>{
 
        const data_to_remove = ['token','teatcher']
         
-      
-        return  data_to_remove.forEach((items:string)=>{
-               Cookie.remove(items[0])
-               localStorage.removeItem(items)
+       Cookie.remove('token')
+       data_to_remove.forEach((items:string)=>{
+              
+             return  localStorage.removeItem(items)
+
             })
-     
+        router.push('/loginpage')    
       
     }
 
