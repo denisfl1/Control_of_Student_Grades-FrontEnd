@@ -9,8 +9,8 @@ export default function SelectStudentTable(props:{setData:React.Dispatch<React.S
         const[DiscDiscipline,setDiscDiscipline] = useState<string>()
         const[SELECT,setSelect] = useState<string>()
         const [inputSearch,setInputSearch] = useState<string>()
-        const keys = ['name','surname']
-        const search = SELECT ? allStudents?.filter((data:any)=>keys.find(key=>data[key].toLowerCase().includes(SELECT)||
+        const keys = ['fullname']
+        const search =  typeof SELECT !== 'undefined'  ? allStudents?.filter((data:any)=>keys.find(key=>data[key].toLowerCase().includes(SELECT)||
         data[key].includes(SELECT))):allStudents
 
         useEffect(()=>{
@@ -20,24 +20,40 @@ export default function SelectStudentTable(props:{setData:React.Dispatch<React.S
                     const DATAs = res.data.alumn
                     const Disc = res.data['discipline']
                  
-                    setAllStudents(DATAs)
+                    setAllStudents(DATAs.map((it:any)=>{
+                        const fullname = `${it.name} ${it.surname}`
+                        return{...it,
+                            fullname:fullname
+
+                        }
+                    }))
                     setDiscDiscipline(Disc)
-                   
+                    
                 }
+                
             )
-    
-        },[])
         
+        },[])
+
         const handleClick =()=>{
 
+            setSelect(inputSearch)
 
 
         }
 
+        useEffect(()=>{
+
+            if(inputSearch == ''){
+                setSelect('')
+            }
+
+        },[inputSearch])
+
 return(
 
-    <div className="SelectStudentContainer overflow-x-auto overflow-y-scroll" style={{height:'650px'}}>
-       <div className="flex overflow-hidden "><input style={{width:"100%",height:'40px',paddingLeft:'10px',border:'none'}}></input><button onClick={handleClick}  style={{backgroundColor:'rgb(0, 64, 98)',color:'white',width:'150px',borderRight:'1px solid white'}}>Pesquisar</button></div> 
+    <div className="SelectStudentContainer overflow-x-hidden overflow-y-auto" style={{height:'650px'}}>
+       <div className="flex overflow-hidden"><input onChange={(e:any)=>setInputSearch(e.target.value)} style={{width:"100%",height:'40px',paddingLeft:'10px',border:'none'}}></input><button onClick={handleClick}  style={{backgroundColor:'rgb(0, 64, 98)',color:'white',width:'150px',borderRight:'1px solid white'}}>Pesquisar</button></div> 
     <table style={{
         width:"480px"
     }}>
