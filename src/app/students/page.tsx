@@ -152,7 +152,7 @@ export default function studentsList(){
             <img style={{zIndex:-1,position:'absolute'}} src={background.src}></img>
             <div className="studentsListContainer w-full mt-5" >
                 <div className="flex h-20 w-9/12 m-auto bg-opacity-80 bg-white t-0 justify-around items-center" style={{borderTopLeftRadius:'10px',borderTopRightRadius:'10px'}}>
-                <div className="containerInput"><input onChange={(e:any)=>setSearch(e.target.value)} placeholder="Nome ou RA" className="w-full" type="text"></input><img src={lupa.src}></img></div>
+                <div className="containerInput" style={{borderRadius:'15px',overflow:'hidden'}}><input onChange={(e:any)=>setSearch(e.target.value)} placeholder="Nome ou RA" className="w-full" type="text"></input><img src={lupa.src}></img></div>
                 <select id="select_situations" onChange={(e:any)=>selectFilterNote(students,e.target.value)}>
         
                   <option>Todos</option>     
