@@ -77,12 +77,12 @@ return(
                     <tr>
                     <td>{fullname}</td>
                     <td>{it.ra}</td>
-                    <td><button onClick={()=>props.setData(
+                    <td><button className="selectStudentButton" onClick={()=>props.setData(
                        { ...it,
                         discipline:DiscDiscipline
                        }
                         
-                        )}>Selecionar</button></td>
+                        )}>selecionar</button></td>
     
                 </tr>
     

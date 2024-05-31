@@ -9,6 +9,7 @@ import { useRouter } from 'next/navigation';
 interface ContextTypes{
 Logged?:(data:any)=>void;
 Logout?:()=>void;
+user?:any;
 setUser?:any;
 Authenticated?:boolean;
 token?:string|null;
@@ -69,7 +70,7 @@ export const AuthContext:React.FC<ContextTypes> =({children})=>{
 
     return(
 
-        <AppContext.Provider value={{Authenticated:!!user, Logged,Logout,setUser,children}}>
+        <AppContext.Provider value={{Authenticated:!!user,user, Logged,Logout,setUser,children}}>
             {children}
         </AppContext.Provider>
     )

@@ -169,6 +169,12 @@ height: 30px;
   min-height: 100vh;
 }
 
+.tableAllNotes{
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+
 .tableAllNotes  td:not(:first-child){
   text-align: center;
 }
@@ -180,7 +186,7 @@ height: 30px;
 .studentInfoContainer{
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content:space-around;
 }
 
 .studentInfo{
@@ -369,6 +375,14 @@ font-weight: bold;
 
 .SelectStudentContainer{
   border-radius: 10px;
+}
+
+.selectStudentButton{
+  background-color: #004062;
+  color:white;
+  padding: 5px;
+  border-radius: 5px;
+  
 }
 
 .tableNotes_toAdd th{

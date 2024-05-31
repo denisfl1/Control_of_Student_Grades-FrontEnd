@@ -1,6 +1,6 @@
 "use client"
 
-import React from "react";
+import React, { useContext } from "react";
 import { useEffect, useState } from "react";
 import {API} from "@/api/api"
 import Header from "@/components/header";
@@ -8,6 +8,7 @@ import see from "@/imgs/user-list.png"
 import Link from "next/link";
 import background from "@/imgs/classroom.jpg"
 import lupa from "@/imgs/lupa.png"
+import { AppContext } from "@/context";
 
 export default function studentsList(){
 
@@ -16,6 +17,22 @@ export default function studentsList(){
     const key = ['name','surname','ra']
     const [search,setSearch] = useState<string[]>([])
     const filterNote = search[0] ? students.filter((data:any)=>key.find(keys=>data[keys].toLowerCase().includes(search) || data[keys].includes(search))) : average && typeof average[0] != 'undefined' ? average : students
+    const {user} = useContext(AppContext)
+    const [credential,setCredential] = useState<string>()
+    const [RA,setRA] = useState<string>()
+
+    useEffect(()=>{
+
+    if(user){
+    const cred = user.credential
+    const ra = user.ra
+    setCredential(cred)
+    setRA(ra)
+
+
+    }
+    },[user])
+
 
     const keys = ['português',
     'literatura',
@@ -81,9 +98,9 @@ export default function studentsList(){
                
             }
         )
- 
-    },[])
 
+
+    },[])
 
 
 
@@ -147,7 +164,6 @@ export default function studentsList(){
     return(
 
         <div className="studentsContainer  h-screen w-full">
-
             <Header></Header>
             <img style={{zIndex:-1,position:'absolute'}} src={background.src}></img>
             <div className="studentsListContainer w-full mt-5" >
@@ -190,7 +206,7 @@ export default function studentsList(){
             <td>{student.name}</td>
             <td>{student.surname}</td>
             <td className="text-center" style={{backgroundColor:notes('color',student),color:'white'}}>{notes('notes',student)}</td>
-            <td><Link href={`/allnotes/${student.ra}`}><img className="w-8 m-auto" src={see.src}></img></Link></td>
+           <td>{credential ?<Link href={`/allnotes/${student.ra}`}><img className="w-8 m-auto" src={see.src}></img></Link> : student.ra == RA &&<Link href={`/allnotes/${student.ra}`}><img className="w-8 m-auto" src={see.src}></img></Link>}</td>
          
         </tr>
       )})}
