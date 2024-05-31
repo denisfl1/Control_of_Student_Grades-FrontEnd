@@ -1,6 +1,6 @@
 "use client"
 
-import {createContext, useContext, useEffect, useState} from 'react'
+import {createContext,useEffect, useState} from 'react'
 import  Cookie  from 'js-cookie';
 import {API} from "@/api/api"
 import { useRouter } from 'next/navigation';
@@ -22,7 +22,7 @@ export const AppContext = createContext<ContextTypes>(
 
 
 
-export const AppWrapper:React.FC<ContextTypes> =({children})=>{
+export const AuthContext:React.FC<ContextTypes> =({children})=>{
     let [user,setUser] = useState<any>(null)
     const token = window.localStorage.getItem('token')
     const TEATCHER = localStorage.getItem('teatcher')   
