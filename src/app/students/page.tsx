@@ -22,13 +22,13 @@ export default function studentsList(){
     const [RA,setRA] = useState<string>()
 
     useEffect(()=>{
-
+        console.log(user)
     if(user){
     const cred = user.credential
     const ra = user.ra
     setCredential(cred)
     setRA(ra)
-
+  
 
     }
     },[user])

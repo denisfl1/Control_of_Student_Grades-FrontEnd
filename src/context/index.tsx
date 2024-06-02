@@ -26,13 +26,13 @@ export const AppContext = createContext<ContextTypes>(
 export const AuthContext:React.FC<ContextTypes> =({children})=>{
     let [user,setUser] = useState<any>(null)
     const token = window.localStorage.getItem('token')
-    const TEATCHER = localStorage.getItem('teatcher')   
+    const TeatcherorStudent = localStorage.getItem('teatcher') || localStorage.getItem('student')    
     const router = useRouter()
 
     useEffect(()=>{
-           
-    if(TEATCHER){
-        let data = JSON.parse(TEATCHER)
+       
+    if(TeatcherorStudent){
+        let data = JSON.parse(TeatcherorStudent )
         setUser(data)
 
     }
@@ -44,18 +44,27 @@ export const AuthContext:React.FC<ContextTypes> =({children})=>{
 
     const Logged=(data:any)=>{
 
-        setUser(data.teatcher)
-
-            window.localStorage.setItem('teatcher',JSON.stringify(data.teatcher))   
-            window.localStorage.setItem('token',data.token)
+        for(const i in data){     
+            
+            if(i === 'student' || i ==='teatcher'){   
+            setUser(data[i])    
+            window.localStorage.setItem(`${i}`,JSON.stringify(data[`${i}`]))
+            }else{
+                window.localStorage.setItem(`${i}`,data.token)
+            }
+        
+         
+        }
+        
             Cookie.set('token',data.token)
             router.push('/')
+        
     }
 
 
     const Logout=()=>{
 
-       const data_to_remove = ['token','teatcher']
+       const data_to_remove = ['token','teatcher','student']
         
        Cookie.remove('token')
        data_to_remove.forEach((items:string)=>{

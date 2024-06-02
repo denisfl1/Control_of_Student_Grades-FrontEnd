@@ -11,11 +11,12 @@ export default function AddStudendComp(){
     const [name,setName] = useState<string[]>([])
     const [surname,setSurname] = useState<string>()
     const [ra,setRA] = useState()
+    const password = '123456'
 
 
     const sendData= async()=>{
 
-       await API.post("/createStudent",{name,surname,ra}).then(
+       await API.post("/createStudent",{name,surname,ra,password}).then(
             res=>{
                alert(res.data)
             },error=>{

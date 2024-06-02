@@ -16,7 +16,7 @@ export default function login(){
     const HandleLogin = async(e:React.MouseEvent<HTMLButtonElement>)=>{
     e.preventDefault()
 
-       await API.post('/loginTeatcher',{credential,password}).then(
+       await API.post('/login',{credential,password}).then(
             res=>{
                 if(res.status == 200 && Logged)return Logged(res.data)
                
