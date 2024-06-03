@@ -5,12 +5,14 @@ import school from "@/imgs/school.png"
 import { useContext, useState } from "react"
 import {API} from "@/api/api"
 import { AppContext } from "@/context"
+import { useRouter } from 'next/navigation';
 
 export default function login(){
 
     const[credential,setCredential]= useState<string>()
     const[password,setPassword]= useState<string>()
     const{Logged}= useContext(AppContext)
+    const router = useRouter()
 
 
     const HandleLogin = async(e:React.MouseEvent<HTMLButtonElement>)=>{
@@ -18,7 +20,7 @@ export default function login(){
 
        await API.post('/login',{credential,password}).then(
             res=>{
-                if(res.status == 200 && Logged)return Logged(res.data)
+                if(res.status == 200 && Logged)return Logged(res.data),router.push('/')
                
  
             },error=>{

@@ -53,7 +53,7 @@ export default function SelectStudentTable(props:{setData:React.Dispatch<React.S
 return(
 
     <div className="SelectStudentContainer overflow-x-hidden overflow-y-auto" style={{height:'650px'}}>
-       <div className="flex overflow-hidden"><input onChange={(e:any)=>setInputSearch(e.target.value)} style={{width:"100%",height:'40px',paddingLeft:'10px',border:'none'}}></input><button onClick={handleClick}  style={{backgroundColor:'rgb(0, 64, 98)',color:'white',width:'150px',borderRight:'1px solid white'}}>Pesquisar</button></div> 
+       <div className="flex overflow-hidden"><input placeholder="Nome completo" onChange={(e:any)=>setInputSearch(e.target.value)} style={{width:"100%",height:'40px',paddingLeft:'10px',border:'none'}}></input><button onClick={handleClick}  style={{backgroundColor:'rgb(0, 64, 98)',color:'white',width:'150px',borderRight:'1px solid white'}}>Pesquisar</button></div> 
     <table style={{
         width:"480px"
     }}>

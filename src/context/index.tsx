@@ -57,7 +57,7 @@ export const AuthContext:React.FC<ContextTypes> =({children})=>{
         }
         
             Cookie.set('token',data.token)
-            router.push('/')
+         
         
     }
 
