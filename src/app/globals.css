@@ -369,7 +369,7 @@ font-weight: bold;
   line-height: 40px;
   font-weight: bold;
   border-radius: 10px;
-
+  overflow: hidden;
   margin-top: 80px;
 }
 

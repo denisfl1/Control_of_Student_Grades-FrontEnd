@@ -22,7 +22,7 @@ export default function studentsList(){
     const [RA,setRA] = useState<string>()
 
     useEffect(()=>{
-        console.log(user)
+
     if(user){
     const cred = user.credential
     const ra = user.ra
@@ -34,7 +34,8 @@ export default function studentsList(){
     },[user])
 
 
-    const keys = ['português',
+    const keys = [
+    'português',
     'literatura',
     'inglês',
     'matemática',
@@ -104,7 +105,7 @@ export default function studentsList(){
 
 
 
-    const selectFilterNote=(data:string[],target:any)=>{
+    const selectFilterNote=(data:string[],target:string)=>{
         let aproved:string[]= []
         let reproved:string[]= []
         let waiting:string[] = []
