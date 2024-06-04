@@ -3,7 +3,6 @@
 
 import { useContext, useEffect, useState } from "react"
 import {API} from "@/api/api"
-import { AppContext } from "@/context"
 import Swal from 'sweetalert2';
 
 export default function AddNoteComp(props:{data:any,setData:React.Dispatch<React.SetStateAction<string[]>>}){
