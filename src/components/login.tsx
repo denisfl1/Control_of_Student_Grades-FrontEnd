@@ -46,7 +46,7 @@ export default function login(){
 
             <form className="flex flex-col m-auto">
           
-                <input onChange={(e)=>setCredential(e.target.value)} placeholder="Digite suas Credenciais" type="text" name="text"></input>
+                <input onChange={(e)=>setCredential(e.target.value)} placeholder="Credenciais ou RA" type="text" name="text"></input>
 
 
                 <input onChange={(e)=>setPassword(e.target.value)} placeholder="Digite sua Senha" type="password" name="password"></input>

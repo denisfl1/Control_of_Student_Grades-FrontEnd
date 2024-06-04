@@ -8,7 +8,7 @@ export default function AddNoteComp(props:{data:any,setData:React.Dispatch<React
 
     const [name,setName] = useState<any>([])
     const [Actual_Note,setActual_Note] = useState<string|number>()
-    const [ra,setStudent_RA] = useState<string[]>([])
+    const [ra,setStudent_RA] = useState<any>()
     const [note,setNote] = useState<any>()
     const [two_months,setTwo_months] = useState<string>('1')
     
@@ -20,7 +20,7 @@ export default function AddNoteComp(props:{data:any,setData:React.Dispatch<React
         let data_ra = ''
         let discipline = ''
         let data_note = ''
-        const data = props.data
+        let data = props.data
      
     for(let i in data){
         data_name = data['name']
@@ -43,7 +43,7 @@ export default function AddNoteComp(props:{data:any,setData:React.Dispatch<React
     }
     const fullname = `${data_name} ${data_surname}`
     setName(fullname)
-    setStudent_RA([data_ra])
+    setStudent_RA(data_ra)
 
 
     },[props.data,two_months])
@@ -81,13 +81,41 @@ export default function AddNoteComp(props:{data:any,setData:React.Dispatch<React
 
     }
 
-    const handleClear = ()=>{
-        
+    const handleClear = async ()=>{
+        const convert = null
         const question = window.confirm('Remover Nota?')
         if(question){
         setNote('')
         setActual_Note('')
+
+        return await API.post('/addnote',{ra,convert,two_months}).then(
+            res=>{
+          
+                if(res.status == 200){
+                 props.setData((prevState:any)=>{
+                    return {
+                        ...prevState,
+                        notes:{...prevState.notes,
+                        [two_months]:{...prevState.notes[two_months],
+                        [prevState.discipline]:convert}}
+                      
+                        }
+                 })
+            
+                  alert('Removido com sucesso!')
+                }
+                   
+            },error=>{
+                
+                error && alert(error)
+             
+            }
+        )
+
         }
+    
+
+      
     }
 
 
@@ -124,7 +152,7 @@ return(
 
 
             <div style={{display:'flex',marginTop:'20px'}}>
-               <button onClick={handleClear} className="clearButton">LIMPAR</button>
+               <button onClick={handleClear} className="clearButton">REMOVER</button>
                <button onClick={sendData} className="saveButton">SALVAR</button>
             </div>
 

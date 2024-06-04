@@ -83,7 +83,7 @@ export default function studentsList(){
     
         }else{
             
-            if(awaiting)return  "AGUARDANDO"
+            if(awaiting)return  "PENDENTE"
             if( sum >= 7 )return "APROVADO"
             return "REPROVADO"
         }
@@ -135,7 +135,7 @@ export default function studentsList(){
             sum = Math.round(sum)/13
      
      
-            if(sum >= 7)return aproved.push(it)
+            if(sum >= 7 && !void_note)return aproved.push(it)
             if(sum < 7 && !void_note) return reproved.push(it)  
             if(void_note) return  waiting.push(it)
       
@@ -150,7 +150,7 @@ export default function studentsList(){
 
            setAverage(reproved)
 
-        }else if(target == "aguardando"){
+        }else if(target == "pendente"){
 
            setAverage(waiting)
 
@@ -175,7 +175,7 @@ export default function studentsList(){
                   <option>Todos</option>     
                   <option value={"aprovado"}>Aprovado</option>
                   <option value={"reprovado"}>Reprovado</option>
-                  <option value={"aguardando"}>Aguardando</option>
+                  <option value={"pendente"}>Pendente</option>
            
                 </select>
                 </div>
