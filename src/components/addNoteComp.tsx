@@ -1,8 +1,10 @@
 
 "use client"
 
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import {API} from "@/api/api"
+import { AppContext } from "@/context"
+import Swal from 'sweetalert2';
 
 export default function AddNoteComp(props:{data:any,setData:React.Dispatch<React.SetStateAction<string[]>>}){
 
@@ -11,7 +13,6 @@ export default function AddNoteComp(props:{data:any,setData:React.Dispatch<React
     const [ra,setStudent_RA] = useState<any>()
     const [note,setNote] = useState<any>()
     const [two_months,setTwo_months] = useState<string>('1')
-    
 
     useEffect(()=>{
         
@@ -69,52 +70,77 @@ export default function AddNoteComp(props:{data:any,setData:React.Dispatch<React
                         }
                  })
             
-                  alert(res.data)
+                 Swal.fire({
+                    title: `${res.data}`,
+                    // text: "Your file has been deleted.",
+                    icon: "success"
+                  })
                 }
                    
             },error=>{
               
-                alert(error.response.data)
+                Swal.fire({
+                    title: `${error.data}`,
+                    // text: "Your file has been deleted.",
+                    icon: "error"
+                  })
             }
         )
 
 
     }
 
-    const handleClear = async ()=>{
+    const handleClear =()=>{
+
         const convert = null
-        const question = window.confirm('Remover Nota?')
-        if(question){
-        setNote('')
-        setActual_Note('')
 
-        return await API.post('/addnote',{ra,convert,two_months}).then(
-            res=>{
-          
-                if(res.status == 200){
-                 props.setData((prevState:any)=>{
-                    return {
-                        ...prevState,
-                        notes:{...prevState.notes,
-                        [two_months]:{...prevState.notes[two_months],
-                        [prevState.discipline]:convert}}
-                      
+        Swal.fire({
+            title: "Remover Nota?",
+            // text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Sim, remover!",
+            cancelButtonText: "Cancelar"
+          }).then(async(result) => {
+            if (result.isConfirmed) {
+                setNote('')
+                setActual_Note('')
+
+                await API.post('/addnote',{ra,convert,two_months}).then(
+                    res=>{
+                  
+                        if(res.status == 200){
+                         props.setData((prevState:any)=>{
+                            return {
+                                ...prevState,
+                                notes:{...prevState.notes,
+                                [two_months]:{...prevState.notes[two_months],
+                                [prevState.discipline]:convert}}
+                              
+                                }
+                         })
+                                 
+                          Swal.fire({
+                            title: 'Removido com sucesso!',
+                            // text: "Your file has been deleted.",
+                            icon: "success"
+                          })
                         }
-                 })
+                           
+                    },error=>{
+                            
+                        Swal.fire({
+                            title: `${error.data}`,
+                            icon: "error"
+                          })
+                     
+                    }
+                )
             
-                  alert('Removido com sucesso!')
-                }
-                   
-            },error=>{
-                
-                error && alert(error)
-             
             }
-        )
-
-        }
-    
-
+          })
       
     }
 

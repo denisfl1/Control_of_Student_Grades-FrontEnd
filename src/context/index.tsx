@@ -4,6 +4,7 @@ import {createContext,useEffect, useState} from 'react'
 import  Cookie  from 'js-cookie';
 import {API} from "@/api/api"
 import { useRouter } from 'next/navigation';
+import Swal from 'sweetalert2';
 
 
 interface ContextTypes{
@@ -13,7 +14,8 @@ user?:any;
 setUser?:any;
 Authenticated?:boolean;
 token?:string|null;
-children:React.ReactNode
+children:React.ReactNode;
+Handle_Question?:(question:string,response:any)=>any
     
 }
 
@@ -28,6 +30,32 @@ export const AuthContext:React.FC<ContextTypes> =({children})=>{
     const token = window.localStorage.getItem('token')
     const TeatcherorStudent = localStorage.getItem('teatcher') || localStorage.getItem('student')    
     const router = useRouter()
+
+
+
+    const Handle_Question =(question:string,response:any)=>{
+
+        Swal.fire({
+            title: `${question}`,
+            // text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Sim,remover!"
+          }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.fire({
+                title: `${response.data}`,
+                // text: "Your file has been deleted.",
+                icon:  response.status == 200 ? "success" : "error"
+              });
+            }
+          });
+
+    }
+
+   
 
     useEffect(()=>{
        
@@ -79,7 +107,7 @@ export const AuthContext:React.FC<ContextTypes> =({children})=>{
 
     return(
 
-        <AppContext.Provider value={{Authenticated:!!user,user, Logged,Logout,setUser,children}}>
+        <AppContext.Provider value={{Authenticated:!!user,user, Logged,Logout,setUser,Handle_Question,children}}>
             {children}
         </AppContext.Provider>
     )
