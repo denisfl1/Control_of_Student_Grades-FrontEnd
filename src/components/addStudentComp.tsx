@@ -10,7 +10,7 @@ export default function AddStudendComp(){
 
     const [name,setName] = useState<string[]>([])
     const [surname,setSurname] = useState<string>()
-    const [ra,setRA] = useState()
+    const [ra,setRA] = useState<string>()
     const password = '123456'
 
 

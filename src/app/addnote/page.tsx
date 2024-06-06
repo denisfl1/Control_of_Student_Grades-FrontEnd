@@ -4,17 +4,15 @@ import AddNoteComp from "@/components/addNoteComp"
 import SelectStudentTable from "@/components/selectStudentTable"
 import Header from "@/components/header"
 import background from "@/imgs/classroom.jpg"
-import { useEffect, useState } from "react"
-import {API} from "@/api/api"
+import {useState } from "react"
 import NoteTable from "@/components/noteTable"
 
 
 export default function AddNotePage(props:{data:any}){
 
     const [data,setData] = useState<any>()
-    const [ra,setRA]=  useState<any>()
+    const [ra,setRA]=  useState<string>('')
 
-  
 
     return(
 
