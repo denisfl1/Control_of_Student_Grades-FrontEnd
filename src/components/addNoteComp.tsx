@@ -7,10 +7,10 @@ import Swal from 'sweetalert2';
 
 export default function AddNoteComp(props:{data:any,setData:React.Dispatch<React.SetStateAction<string[]>>}){
 
-    const [name,setName] = useState<any>([])
+    const [name,setName] = useState<string>()
     const [Actual_Note,setActual_Note] = useState<string|number>()
-    const [ra,setStudent_RA] = useState<any>()
-    const [note,setNote] = useState<any>()
+    const [ra,setStudent_RA] = useState<string>()
+    const [note,setNote] = useState<number|string>()
     const [two_months,setTwo_months] = useState<string>('1')
 
     useEffect(()=>{
@@ -79,7 +79,7 @@ export default function AddNoteComp(props:{data:any,setData:React.Dispatch<React
             },error=>{
               
                 Swal.fire({
-                    title: `${error.data}`,
+                    title: `${error.response.data}`,
                     // text: "Your file has been deleted.",
                     icon: "error"
                   })
@@ -131,7 +131,7 @@ export default function AddNoteComp(props:{data:any,setData:React.Dispatch<React
                     },error=>{
                             
                         Swal.fire({
-                            title: `${error.data}`,
+                            title: `${error.response.data}`,
                             icon: "error"
                           })
                      
