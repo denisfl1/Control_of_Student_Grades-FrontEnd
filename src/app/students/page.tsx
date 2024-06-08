@@ -110,7 +110,7 @@ export default function studentsList(){
         let reproved:string[]= []
         let waiting:string[] = []
 
-        data.map((it:any)=>{
+        data.forEach((it:any)=>{
         let sum:number = 0
         let void_note = false
 
@@ -188,7 +188,7 @@ export default function studentsList(){
                     <th>Nome</th>
                     <th>Sobrenome</th>            
                     <th className="text-center">Situação</th>
-                    <th className="text-center">Todas</th>
+                    <th className="text-center">Notas</th>
                  
                 </tr>
 
@@ -197,7 +197,7 @@ export default function studentsList(){
 
             <tbody>
                
-            {filterNote.map((student: any,index:number) => {
+            {filterNote.map((student: any) => {
 
             
             return (
