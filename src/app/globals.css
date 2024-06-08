@@ -235,20 +235,6 @@ min-height: 100%;
 display: flex;
 }
 
-.addStudentSubContainer{
-  /* width: 800px;
-  background-color:aliceblue;
-  height: 500px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  border-radius: 8px; */
-
-}
-
-
 .containerAddStudentIMG{
   height: 100px;
   margin-top: 20px;
